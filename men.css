@@ -49,11 +49,17 @@ header .links {
       font-weight: bold;
       margin: 20px;
       padding: 5px 10px;
+
+      &:hover {
+        box-shadow: 0 0 5px 5px ghostwhite inset;
+      }
     }
 
     & img {
       width: 200px;
     }
+
+
   }
 }
 
@@ -69,6 +75,26 @@ header .links {
   &:hover {
     box-shadow: 0 0 5px 5px #e1701a inset;
   }
+}
+
+.check-out {
+  border: 1px solid lightslategrey;
+  background: black;
+  color: white;
+  font-weight: bold;
+  padding: 5px 30px;
+
+  &:hover {
+    box-shadow: 0 0 5px 5px lightslategrey inset;
+  }
+}
+
+#total-price {
+  border: 1px solid dimgrey;
+  background: dimgrey;
+  color: white;
+  font-weight: bold;
+  padding: 3px 30px;
 }
 
 

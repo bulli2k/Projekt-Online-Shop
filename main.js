@@ -11,6 +11,8 @@ const productsContainer = document.getElementById('product-container');
 //Function "readCartFromLocal" wird aufgerufen um die Elemente im Array auf dem DOM anzeigen zu lassen.
 const cartHeader = document.getElementById('cart-header');
 const cartBody = document.getElementById('cart-body');
+const cartBottom = document.getElementById('cart-bottom');
+const checkOut = document.getElementById('check-Out');
 showCart();
 
 
@@ -75,7 +77,7 @@ function addItemToCart(product) {
 }
 
 cartBody.addEventListener("click", function (event) {
-  if (event.target.tagName === 'BUTTON') {
+  if (event.target.classList.contains('btn-action')) {
     const id = event.target.parentElement.id
     deleteItemFromCart();
     // readCartFromLocal()
@@ -151,49 +153,47 @@ function showCart() {
       <div class="item-title">${product.name}</div>
       <div class="item-size">Size:${product.size}</div>
       <div class="item-quantity">Quantity:${product.quantity}</div>
+      <div class="price">Price:${product.price}€</div>
       <div>
-        <button class="btn-quantity" data-id='${product.id}'>-</button>
-        <span class="item-count">1</span>
-        <button class="btn-quantity" data-id='${product.id}'>+</button>
+        <button class="btn-quantity" id="increment" data-id='${product.id}'>+</button>
+        <span class="item-count">0</span>
+        <button class="btn-quantity" id="decrement" data-id='${product.id}'>-</button>
       </div>
-      <div class="price">${product.price}€</div>
+
       <button class="btn-action">Delete</button>
       `;
 
       cartBody.appendChild(cartItem);
 
+      cartItem.querySelector("#increment").addEventListener("click", (event) => {
+
+        let itemCount = cartItem.querySelector(".item-count");
+        if (event.target.tagName === "BUTTON") {
+          itemCount++;
+          console.log(itemCount);
+        }
+      });
     })
+
 
     cartHeader.innerHTML = `
     <div class="cart-title">CART</div>
-    <div id="cart-total">Totalprice (${totalQuantity} items): ${totalPrice}€</div>
+    <div id="cart-total">(${totalQuantity} items): ${totalPrice}€</div>
   `;
-
+    cartBottom.innerHTML = `
+    <hr>
+   <span id="total-price">${totalPrice}€</span>
+    <button class="check-out" id="check-Out"><a href="checkout.html">Check Out</a></button>
+ `;
 
     cartHeader.classList.add('cart-header');
     cartHeader.appendChild(cartBody);
+    cartBody.appendChild(cartBottom);
 
 
   }
-
 }
 
-
-// function getTotalPrice() {
-//   let totalPrice = 0;
-//   let totalQuantity = 0;
-//
-//   products.forEach((product) => {
-//     totalPrice = product.price * product.quantity;
-//
-//
-//     totalQuantity = product.quantity;
-//
-//   });
-//   totalPriceEL.innerHTML = `Totalprice (${totalQuantity} items): $${totalPrice}`;
-// }
-//
-// getTotalPrice();
 
 
 
