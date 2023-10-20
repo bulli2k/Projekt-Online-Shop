@@ -1,7 +1,7 @@
 // Array von der Datei "products.js" importiert
-import {products} from "./products.js";
+import {productsW} from "./products.js";
 //Localstorage Key "cart" wird der Variable "storageKey"  zugewiesen
-const storageKey = 'Mcart';
+const storageKey = 'Wcart';
 //HTML id "product-container" wird der Variable "productsContainer" zugewiesen
 const productsContainer = document.getElementById('product-container');
 //HTML id "cart-header" wird der Variable cartHeader zugewiesen
@@ -32,7 +32,7 @@ showProducts();
  */
 function showProducts() {
 
-  products.forEach((item) => {
+  productsW.forEach((item) => {
     let product = document.createElement("div");
     product.classList.add("product");
     product.innerHTML = `
@@ -74,10 +74,11 @@ function addItemToCart(product) {
     quantity: product.quantity,
 
   }
-
-  // Function "saveCart" wird aufgerufen
+  /**
+   *  Function "saveCart" wird aufgerufen
+   *  Function "showCart" wird aufgerufen
+   */
   saveCart(newCartItem);
-  // Function "showCart" wird aufgerufen
   showCart();
 }
 
@@ -91,7 +92,8 @@ function addItemToCart(product) {
 cartBody.addEventListener("click", function (event) {
   if (event.target.classList.contains('btn-action')) {
     deleteItemFromCart();
-    showCart();
+    // readCartFromLocal()
+    event.target.parentElement.remove();
   }
 })
 
@@ -167,17 +169,18 @@ function showCart() {
       <div class="item-size">Size:${product.size}</div>
       <div class="price">Price:${product.price}€</div>
       <div>
-        <button class="btn-quantity" id="decrement" data-id='${product.id}'>-</button>
-        <span class="item-count">${product.quantity}</span>
         <button class="btn-quantity" id="increment" data-id='${product.id}'>+</button>
+        <span class="item-count">${product.quantity}</span>
+        <button class="btn-quantity" id="decrement" data-id='${product.id}'>-</button>
       </div>
 
       <button class="btn-action">Delete</button>
       `;
 
       cartBody.appendChild(cartItem);
+
       /**
-       * im innerHTML von cartItem wird die span elements "item-count" der Variable itemCount zugewiesen
+       * im innerHTML von cartItem wird die span klasse "item-count" der Variable itemCount zugewiesen
        * im innerHTML von cartItem wird auf den button mit der id "increment" ein eventListener getan mit dem typ "click"
        *    Pro Klick:
        *     - Wird die quantity  um 1 addiert
@@ -194,7 +197,7 @@ function showCart() {
         itemCount.innerText = product.quantity;
         totalQuantity++;
         totalPrice += product.price;
-        document.getElementById('cart-total').innerText = `(${totalQuantity} items)`;
+        document.getElementById('cart-total').innerText = `(${totalQuantity} items): ${totalPrice}€`;
         document.getElementById('total-price').innerText = `${totalPrice}€`;
       });
 
@@ -211,15 +214,14 @@ function showCart() {
        */
 
       cartItem.querySelector("#decrement").addEventListener("click", () => {
-        if (product.quantity <= 0) {
-          return;
+        if (product.quantity > 0) {
+          product.quantity--;
+          itemCount.innerText = product.quantity;
+          totalQuantity--;
+          totalPrice -= product.price;
+          document.getElementById('cart-total').innerText = `(${totalQuantity} items): ${totalPrice}€`; // Update the cart total display
+          document.getElementById('total-price').innerText = `${totalPrice}€`;
         }
-        product.quantity--;
-        itemCount.innerText = product.quantity;
-        totalQuantity--;
-        totalPrice -= product.price;
-        document.getElementById('cart-total').innerText = `(${totalQuantity} items)`;
-        document.getElementById('total-price').innerText = `${totalPrice}€`;
       })
     })
   }
@@ -232,7 +234,7 @@ function showCart() {
 
   cartHeader.innerHTML = `
     <div class="cart-title">CART</div>
-    <div id="cart-total">(${totalQuantity} items)</div>
+    <div id="cart-total">(${totalQuantity} items): ${totalPrice}€</div>
   `;
 
   /**
@@ -261,12 +263,6 @@ function showCart() {
 
 }
 
-/**
- * ToDO: Anzahl des Quantitys/Size speichern
- * Container soll Scrollbar sein außere scrollbar entfernen
- * HTML Struktur Elemente ins Template verlagern
- * Checkout Sichtbar/Unsichtbar machen anhand ob Produkte im Warenkorb
- */
 
 
 
