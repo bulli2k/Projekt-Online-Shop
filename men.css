@@ -29,12 +29,14 @@ header .links {
   }
 }
 
-#cart-body, .cart-header {
+#cart-body {
   width: 250px;
   float: right;
   text-align: center;
   border: 1px solid black;
   height: 100%;
+  position: relative;
+  
 
   .cart-title {
     font-weight: bold;
@@ -97,4 +99,15 @@ header .links {
   padding: 3px 30px;
 }
 
-
+.cart-header{
+width: 250px;
+  float: right;
+  text-align: center;
+  border: 1px solid black;
+  height: 400px;
+  overflow-y: scroll;
+}
+#cart-bottom {
+  clear: both; 
+  margin-top: 20px; 
+}
