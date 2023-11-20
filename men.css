@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(100deg, darkgrey, grey);
+  background: linear-gradient(100deg, lightblue, cornflowerblue);
 }
 
 header .links {
@@ -13,6 +13,8 @@ header .links {
   transform: translate(-50%, -50%);
   position: absolute;
   width: max-content;
+  border-radius: 25px;
+  box-shadow: 0 15px 20px powderblue;
 
   .product {
     border: 1px solid black;
@@ -20,11 +22,13 @@ header .links {
     text-align: center;
     display: inline-block;
     margin: 5px;
+    border-radius: 25px;
 
     & img {
       width: 300px;
       height: 380px;
       padding: 5px;
+      border-radius: 25px;
     }
   }
 }
@@ -36,7 +40,8 @@ header .links {
   border: 1px solid black;
   height: 100%;
   position: relative;
-  
+  border-radius: 25px;
+
 
   .cart-title {
     font-weight: bold;
@@ -51,6 +56,7 @@ header .links {
       font-weight: bold;
       margin: 20px;
       padding: 1px 5px;
+      border-radius: 25px;
 
       &:hover {
         box-shadow: 0 0 5px 5px ghostwhite inset;
@@ -59,6 +65,7 @@ header .links {
 
     & img {
       width: 200px;
+      border-radius: 25px;
     }
 
 
@@ -73,6 +80,7 @@ header .links {
   font-weight: bold;
   margin: 20px;
   padding: 5px 10px;
+  border-radius: 25px;
 
   &:hover {
     box-shadow: 0 0 5px 5px #e1701a inset;
@@ -85,6 +93,7 @@ header .links {
   color: white;
   font-weight: bold;
   padding: 5px 30px;
+  border-radius: 25px;
 
   &:hover {
     box-shadow: 0 0 5px 5px lightslategrey inset;
@@ -97,17 +106,27 @@ header .links {
   color: white;
   font-weight: bold;
   padding: 3px 30px;
+  border-radius: 25px;
 }
 
-.cart-header{
-width: 250px;
+.cart-header {
+  width: 250px;
   float: right;
   text-align: center;
   border: 1px solid black;
-  height: 400px;
-  overflow-y: scroll;
+  height: 75%;
+  border-radius: 25px;
+  /*overflow-y: scroll;*/
 }
-#cart-bottom {
-  clear: both; 
-  margin-top: 20px; 
-}
+
+/*#cart-bottom {*/
+/*  clear: both;*/
+/*  margin-top: 20px;*/
+/*  visibility: hidden;*/
+/*}*/
+
+/*#cart-bottom unhidden {*/
+/*  visibility: visible;*/
+/*}*/
+
+/*s*/
