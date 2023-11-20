@@ -39,58 +39,73 @@ function showProducts() {
 
       <img src ="img/${item.images}" alt="bild">
       <div class="title">${item.name}</div>
-      <div class="size">Size:${item.size}</div>
+      <div class="size">Size:
+        <select class="size-options">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </div>
       <div class="price">${item.price}€</div>
       <button class="btn-action">Add to Cart</button>
       `;
 
     product.addEventListener("click", function (event) {
       if (event.target.tagName === 'BUTTON') {
-        addItemToCart(item);
+        const selectedSize = product.querySelector('.size-options').value;
+        addItemToCart(item, selectedSize);
+
       }
     })
-
+    cartBottom.style.visibility = 'hidden';
     productsContainer.appendChild(product);
+
   })
 }
 
 /**
- * Objekt "newEntry" mit den Properties "id, name, price, image, size, quantity" die vom Array Products gezogen werden
+ *
+ * Wir holen uns die Daten aus dem Localstorage (string | null) und parsen diese zu einem Objekt.
+ * Im Array wird nach dem zum Parameter "name" passenden Objekt gesucht und einer variable zugewiesen.
+ * if bedingung die überprüft ob es schon ein item mit dem selben namen  gibt
+ *      Wenn es sie gibt dann wird die quantity um 1 erhöht
+ *      Sonst Objekt "newEntry" mit den Properties "id, name, price, image, size, quantity" die vom Array Products gezogen werden
+ *      newCartItem wird in das Array gepusht
+ *      Localstorage wird aktualisiert
+ *      showCart funktion wird aufgerufen
  */
 
-function addItemToCart(product) {
+function addItemToCart(product, selectedSize) {
   const itemData = JSON.parse(localStorage.getItem(storageKey)) || [];
 
-  // Überprüfen, ob das Produkt bereits im Warenkorb ist
-  const existingProduct = itemData.find((item) => item.name === product.name);
+
+  const existingProduct = itemData.find((item) => item.name === product.name && item.size === selectedSize);
 
   if (existingProduct) {
-    // Wenn das Produkt bereits vorhanden ist, erhöhe die Quantity um 1
+
     existingProduct.quantity += 1;
   } else {
-    // Wenn das Produkt nicht vorhanden ist, füge es zum Warenkorb hinzu
+
     const newCartItem = {
       id: crypto.randomUUID(),
       name: product.name,
       price: product.price,
       image: product.images,
-      size: `<select>
-        <option>S</option>
-        <option>M</option>
-        <option>L</option>
-        <option>XL</option>
-      </select>`,
+      size: selectedSize,
       quantity: 1,
+      stateVisible: true,
     };
 
     itemData.push(newCartItem);
   }
 
-  // Warenkorb im LocalStorage aktualisieren
+
   localStorage.setItem(storageKey, JSON.stringify(itemData));
 
-  // Warenkorb anzeigen
+
   showCart();
+
 }
 
 
@@ -208,6 +223,7 @@ function showCart() {
         totalPrice += product.price;
         document.getElementById('cart-total').innerText = `(${totalQuantity} items)`;
         document.getElementById('total-price').innerText = `${totalPrice}€`;
+        localStorage.setItem(storageKey, JSON.stringify(itemData));
       });
 
       /**
@@ -232,7 +248,12 @@ function showCart() {
         totalPrice -= product.price;
         document.getElementById('cart-total').innerText = `(${totalQuantity} items)`;
         document.getElementById('total-price').innerText = `${totalPrice}€`;
+        localStorage.setItem(storageKey, JSON.stringify(itemData));
       })
+
+      if (product.stateVisible) {
+        cartBottom.style.visibility = 'visible';
+      }
     })
   }
 
@@ -256,6 +277,7 @@ function showCart() {
 
   cartBottom.innerHTML = `
     <hr>
+
    <span id="total-price">${totalPrice}€</span>
     <button class="check-out" id="check-Out"><a href="checkout.html" target="_blank" >Check Out</a></button>
  `;
@@ -269,16 +291,21 @@ function showCart() {
   cartHeader.classList.add('cart-header');
   cartHeader.appendChild(cartBody);
   cartBody.appendChild(cartBottom);
+}
 
-
+function updateStatus(id) {
+  const itemData = JSON.parse(localStorage.getItem(storageKey));
+  const updateEntry = itemData.find((product) => product.id === id);
+  updateEntry.stateVisible = !updateEntry.stateVisible;
+  localStorage.setItem(storageKey, JSON.stringify(itemData));
 }
 
 /**
- * ToDO: Anzahl des Quantitys/Size speichern
- * Container soll Scrollbar sein außere scrollbar entfernen
- * Checkout Sichtbar/Unsichtbar machen anhand ob Produkte im Warenkorb
+ // * ToDO: Anzahl des Quantitys/Size speichern    //size noch speichern
+ // * Container soll Scrollbar sein außere scrollbar entfernen //Problemlösung
+ * HTML Struktur Elemente ins Template verlagern noch machen
+ * Checkout Sichtbar/Unsichtbar machen anhand ob Produkte im Warenkorb halbfertig
  */
-
 
 
 
