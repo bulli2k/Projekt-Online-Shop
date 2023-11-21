@@ -1,5 +1,6 @@
 body {
   background: linear-gradient(100deg, lightblue, cornflowerblue);
+  overflow: hidden;
 }
 
 header .links {
@@ -15,6 +16,7 @@ header .links {
   width: max-content;
   border-radius: 25px;
   box-shadow: 0 15px 20px powderblue;
+
 
   .product {
     border: 1px solid black;
@@ -37,7 +39,7 @@ header .links {
   width: 250px;
   float: right;
   text-align: center;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   height: 100%;
   position: relative;
   border-radius: 25px;
@@ -46,6 +48,8 @@ header .links {
   .cart-title {
     font-weight: bold;
     margin: 20px;
+    position: sticky;
+    top: 0;
   }
 
   .cart-item {
@@ -57,6 +61,7 @@ header .links {
       margin: 20px;
       padding: 1px 5px;
       border-radius: 25px;
+
 
       &:hover {
         box-shadow: 0 0 5px 5px ghostwhite inset;
@@ -114,16 +119,20 @@ header .links {
   float: right;
   text-align: center;
   border: 1px solid black;
-  height: 75%;
+  height: 70vh;
   border-radius: 25px;
-  /*overflow-y: scroll;*/
+  overflow-y: scroll;
+
+
 }
 
-/*#cart-bottom {*/
-/*  clear: both;*/
-/*  margin-top: 20px;*/
-/*  visibility: hidden;*/
-/*}*/
+#cart-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 74%;
+  padding: 0 25px 25px;
+}
 
 /*#cart-bottom unhidden {*/
 /*  visibility: visible;*/

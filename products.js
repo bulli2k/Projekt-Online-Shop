@@ -24,3 +24,30 @@ export const products = [
     quantity: 1,
   },
 ]
+
+export const productsW = [
+  {
+    id: 1,
+    name: 'Dress',
+    price: 450,
+    quantity: 1,
+    images: 'dress.PNG',
+    size: 'S',
+  },
+  {
+    id: 2,
+    name: 'Pants',
+    price: 120,
+    quantity: 1,
+    images: 'wpants.PNG',
+    size: 'S',
+  },
+  {
+    id: 3,
+    name: 'Bag',
+    price: 700,
+    quantity: 1,
+    images: 'prada.PNG',
+    size: 'S',
+  },
+]

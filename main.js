@@ -13,6 +13,8 @@ const cartBottom = document.getElementById('cart-bottom');
 //HTML id "check-out" wird der Variable checkOut zugewiesen
 const checkOut = document.getElementById('check-Out');
 //Function "showCart();" wird aufgerufen
+const searchBar = document.getElementById('search-bar');
+
 showCart();
 
 
@@ -24,10 +26,13 @@ showProducts();
  * 1. Es wird durch das Array itiriert.
  *    - HTML Element "div" wird erstellt und der Variable "product" zugwiesen
  *    - CSS Klasse "product" wird product zugewiesen
- *    - Image, Name, Size, Quantity und Price werden dem innerHTML von product zugewiesen
+ *    - Image, Name, Size, Quantity, Size und Price werden dem innerHTML von product zugewiesen
  *    - ein EventListener mit dem event "click" wird dem product zugewiesen
  *        - if bedingung die überprüft ob der "click" auf dem BUTTON war
- *        - Wenn "click" auf BUTTON war dann wird die function "addToCart" aufgerufen
+ *        - Vom Product wird auf das Size-Options das erste Element die ausgewählte value zugegriffen
+ *        - Wenn "click" auf BUTTON war dann wird die function "addItemToCart" aufgerufen
+ *        - Beim Betätigen des Buttons wird die Checkout box von hidden zu visible
+ *        - Beim initalisieren des Warenkorbs ist die Checkout box hidden
  *    - product wird als childElement dem productsContainer zugewiesen um die Produkte anzeigen zu lassen
  */
 function showProducts() {
@@ -39,14 +44,23 @@ function showProducts() {
 
       <img src ="img/${item.images}" alt="bild">
       <div class="title">${item.name}</div>
-      <div class="size">Size:${item.size}</div>
+      <div class="size">Size:
+        <select class="size-options">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </div>
       <div class="price">${item.price}€</div>
       <button class="btn-action">Add to Cart</button>
       `;
 
     product.addEventListener("click", function (event) {
       if (event.target.tagName === 'BUTTON') {
-        addItemToCart(item);
+        const selectedSize = product.querySelector('.size-options').value;
+        addItemToCart(item, selectedSize);
+        cartBottom.style.visibility = 'visible';
 
       }
     })
@@ -59,7 +73,7 @@ function showProducts() {
 /**
  *
  * Wir holen uns die Daten aus dem Localstorage (string | null) und parsen diese zu einem Objekt.
- * Im Array wird nach dem zum Parameter "name" passenden Objekt gesucht und einer variable zugewiesen.
+ * Im Array wird nach dem zum Parameter "name" und "size" passenden Objekt gesucht und einer variable zugewiesen.
  * if bedingung die überprüft ob es schon ein item mit dem selben namen  gibt
  *      Wenn es sie gibt dann wird die quantity um 1 erhöht
  *      Sonst Objekt "newEntry" mit den Properties "id, name, price, image, size, quantity" die vom Array Products gezogen werden
@@ -68,11 +82,11 @@ function showProducts() {
  *      showCart funktion wird aufgerufen
  */
 
-function addItemToCart(product) {
+function addItemToCart(product, selectedSize) {
   const itemData = JSON.parse(localStorage.getItem(storageKey)) || [];
 
 
-  const existingProduct = itemData.find((item) => item.name === product.name);
+  const existingProduct = itemData.find((item) => item.name === product.name && item.size === selectedSize);
 
   if (existingProduct) {
 
@@ -84,7 +98,7 @@ function addItemToCart(product) {
       name: product.name,
       price: product.price,
       image: product.images,
-      size: product.size,
+      size: selectedSize,
       quantity: 1,
       stateVisible: true,
     };
@@ -268,10 +282,10 @@ function showCart() {
    */
 
   cartBottom.innerHTML = `
-    <hr>
 
    <span id="total-price">${totalPrice}€</span>
     <button class="check-out" id="check-Out"><a href="checkout.html" target="_blank" >Check Out</a></button>
+
  `;
 
   /**
@@ -282,24 +296,40 @@ function showCart() {
 
   cartHeader.classList.add('cart-header');
   cartHeader.appendChild(cartBody);
-  cartBody.appendChild(cartBottom);
+  cartBottom.style.visibility = 'visible';
+  // cartBody.appendChild(cartBottom);
 }
 
 function updateStatus(id) {
   const itemData = JSON.parse(localStorage.getItem(storageKey));
-  const updateEntry = itemData.find((product) => product.id === id);
-  updateEntry.stateVisible = !updateEntry.stateVisible;
+  const updateVisibility = itemData.find((product) => product.id === id);
+  updateVisibility.stateVisible = !updateVisibility.stateVisible;
   localStorage.setItem(storageKey, JSON.stringify(itemData));
 }
 
+
+searchBar.addEventListener('keyup', (event) => {
+  console.log(event);
+});
+
+
+// const Pullover = products.filter(function (product) {
+//   return product.name === 'Pullover';
+// });
+// console.log(Pullover);
+
+// const nonPants = products.filter(product => product.name !== "Pants");
+// console.log(nonPants);
 /**
- // * ToDO: Anzahl des Quantitys/Size speichern    //size noch speichern
- // * Container soll Scrollbar sein außere scrollbar entfernen //Problemlösung
- * HTML Struktur Elemente ins Template verlagern noch machen
- * Checkout Sichtbar/Unsichtbar machen anhand ob Produkte im Warenkorb halbfertig
+ * ToDO: Anzahl des Quantitys/Size speichern    erledigt
+ * Container soll Scrollbar sein außere scrollbar entfernen erledigt
+
+ * Checkout Sichtbar/Unsichtbar machen anhand ob Produkte im Warenkorb read beheben erledigt
+ *
+ *
+ * Filter nach Kategorie, Frei text filter
+ * Sortierung nach Preis absteigend/aufsteigend
  */
-
-
 
 
 
