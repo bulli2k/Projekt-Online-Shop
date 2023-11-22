@@ -14,6 +14,7 @@ const cartBottom = document.getElementById('cart-bottom');
 const checkOut = document.getElementById('check-Out');
 //Function "showCart();" wird aufgerufen
 const searchBar = document.getElementById('search-bar');
+const selectedCategorie = document.getElementById('select-items');
 
 showCart();
 
@@ -64,7 +65,7 @@ function showProducts() {
 
       }
     })
-    cartBottom.style.visibility = 'hidden';
+    // cartBottom.style.visibility = 'hidden';
     productsContainer.appendChild(product);
 
   })
@@ -257,9 +258,9 @@ function showCart() {
         localStorage.setItem(storageKey, JSON.stringify(itemData));
       })
 
-      if (product.stateVisible) {
-        cartBottom.style.visibility = 'visible';
-      }
+      // if (product.stateVisible) {
+      //   cartBottom.style.visibility = 'visible';
+      // }
     })
   }
 
@@ -308,8 +309,52 @@ function updateStatus(id) {
 }
 
 
-searchBar.addEventListener('keyup', (event) => {
-  console.log(event);
+searchBar.addEventListener("keyup", e => {
+  const searchString = e.target.value.toLowerCase();
+  const filteredItems = products.filter(product => {
+    return (
+      product.name.toLowerCase().includes(searchString)
+    );
+  });
+  displayItems(filteredItems);
+});
+console.log(products);
+
+
+const displayItems = (products) => {
+  const htmlString = products
+
+    .map((product) => {
+      return `
+       <div class="product">
+      <img src ="img/${product.images}" alt="bild">
+      <div class="title">${product.name}</div>
+      <div class="size">Size:
+        <select class="size-options">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </div>
+      <div class="price">${product.price}€</div>
+      <button class="btn-action">Add to Cart</button>
+      </div>
+
+      `;
+    })
+    .join('');
+  productsContainer.innerHTML = htmlString;
+}
+
+selectedCategorie.addEventListener('change', (e) => {
+  const selected = e.target.value;
+  const selectedItem = products.filter(product => {
+    return (
+      product.season.includes(selected)
+    );
+  });
+  displayItems(selectedItem);
 });
 
 

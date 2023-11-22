@@ -26,6 +26,10 @@ header .links {
     margin: 5px;
     border-radius: 25px;
 
+    .size-options {
+      display: inline-block;
+    }
+
     & img {
       width: 300px;
       height: 380px;
@@ -53,6 +57,8 @@ header .links {
   }
 
   .cart-item {
+    margin: 10px;
+
     .btn-quantity {
       border: 2px solid dimgrey;
       background: darkgrey;
@@ -131,7 +137,32 @@ header .links {
   right: 0;
   bottom: 0;
   top: 74%;
-  padding: 0 25px 25px;
+  padding: 15px 30px 30px;
+}
+
+.searchItem {
+  .product {
+    border: 1px solid black;
+    width: max-content;
+    text-align: center;
+    display: inline-block;
+    margin: 5px;
+    border-radius: 25px;
+  }
+
+  & img {
+    width: 300px;
+    height: 380px;
+    padding: 5px;
+    border-radius: 25px;
+  }
+
+  & select {
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    display: block;
+  }
 }
 
 /*#cart-bottom unhidden {*/
