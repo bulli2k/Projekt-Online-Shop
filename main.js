@@ -44,7 +44,8 @@ function showProducts() {
     product.innerHTML = `
 
       <img src ="img/${item.images}" alt="bild">
-      <div class="title">${item.name}</div>
+      <div class="product-wrap">
+      <span class="title">${item.name}</span>
       <div class="size">Size:
         <select class="size-options">
           <option value="S">S</option>
@@ -53,8 +54,11 @@ function showProducts() {
           <option value="XL">XL</option>
         </select>
       </div>
-      <div class="price">${item.price}€</div>
+      <span class="price">${item.price}€</span>
+      <div class="wrap-button">
       <button class="btn-action">Add to Cart</button>
+      </div>
+      </div>
       `;
 
     product.addEventListener("click", function (event) {
@@ -196,17 +200,20 @@ function showCart() {
       cartItem.classList.add("cart-item");
       cartItem.id = product.id;
       cartItem.innerHTML = `
-      <img src ="img/${product.image}" alt="bild">
-      <div class="item-title">${product.name}</div>
-      <div class="item-size">Size:${product.size}</div>
-      <div class="price">Price:${product.price}€</div>
-      <div>
+
+      <img style="height: 100px;" src ="img/${product.image}" alt="bild">
+      <div class="item-div">
+      <span class="item-title">${product.name}</span>
+      <div  class="item-size">Size:${product.size}</div>
+      <span class="price">Price:${product.price}€</span>
+      <div class="amount">
         <button class="btn-quantity" id="decrement" data-id='${product.id}'>-</button>
         <span class="item-count">${product.quantity}</span>
         <button class="btn-quantity" id="increment" data-id='${product.id}'>+</button>
       </div>
-
       <button class="btn-action">Delete</button>
+
+      </div>
       `;
 
       cartBody.appendChild(cartItem);
@@ -296,7 +303,7 @@ function showCart() {
    */
 
   cartHeader.classList.add('cart-header');
-  cartHeader.appendChild(cartBody);
+  // cartHeader.appendChild(cartBody);
   cartBottom.style.visibility = 'visible';
   // cartBody.appendChild(cartBottom);
 }
@@ -328,7 +335,8 @@ const displayItems = (products) => {
       return `
        <div class="product">
       <img src ="img/${product.images}" alt="bild">
-      <div class="title">${product.name}</div>
+      <div class="product-wrap">
+      <span class="title">${product.name}</div>
       <div class="size">Size:
         <select class="size-options">
           <option value="S">S</option>
@@ -336,15 +344,19 @@ const displayItems = (products) => {
           <option value="L">L</option>
           <option value="XL">XL</option>
         </select>
-      </div>
-      <div class="price">${product.price}€</div>
+        </div>
+      <span class="price">${product.price}€</span>
+      <div class="wrap-button">
       <button class="btn-action">Add to Cart</button>
       </div>
-
+      </div>
       `;
+
     })
     .join('');
   productsContainer.innerHTML = htmlString;
+
+
 }
 
 selectedCategorie.addEventListener('change', (e) => {
@@ -355,6 +367,7 @@ selectedCategorie.addEventListener('change', (e) => {
     );
   });
   displayItems(selectedItem);
+
 });
 
 

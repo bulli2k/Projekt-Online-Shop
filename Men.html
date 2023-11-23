@@ -7,36 +7,47 @@
 
 </head>
 
-<body class="men">
+<body>
 
 
-<header>
-  <div class="links">
-    <span class="homepage"><a href="index.html" target="_blank">Homepage</a></span>
-    <span class="Men"> <a href="Men.html" target="_blank">Men</a></span>
-    <span class="Women"><a href="women.html" target="_blank">Women</a></span>
-  </div>
-</header>
+<!--  <div class="links">-->
+<!--    <span class="homepage"><a href="index.html" target="_blank">Homepage</a></span>-->
+<!--    <span class="Men"> <a href="Men.html" target="_blank">Men</a></span>-->
+<!--    <span class="Women"><a href="women.html" target="_blank">Women</a></span>-->
+<!--  </div>-->
+<div class="header-container">
+  <header>
+    <span class="product-title"> Product List</span>
+    <div class="icon-cart">
+      <!--      <img alt="pic" id="cart-picture" src="/img/bag.PNG">-->
+      <!--      <span>0</span>-->
+    </div>
+    <div id="caterogize">
+      <select id="select-items">
+        <option>All Categories</option>
+        <option>Summer</option>
+        <option>Winter</option>
+      </select>
+      <div class="searchItem">
+        <input id="search-bar" placeholder="Search..." type="text">
+
+      </div>
+
+    </div>
+
+
+  </header>
+</div>
 
 
 <main>
-  <!--Produktauswahl-->
-  <div>
-    <select id="select-items">
-      <option>All Categories</option>
-      <option>Summer</option>
-      <option>Winter</option>
-    </select>
-  </div>
-  <div class="searchItem">
-    <input id="search-bar" placeholder="Search..." type="text">
 
-  </div>
+
   <div id="product-container">
-
   </div>
   <div id="cart">
     <div id="cart-header">
+
 
     </div>
 
@@ -47,6 +58,7 @@
 
     </div>
   </div>
+
 
 </main>
 <script src="js/main.js" type="module"></script>
