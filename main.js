@@ -8,18 +8,17 @@ const productsContainer = document.getElementById('product-container');
 const cartHeader = document.getElementById('cart-header');
 //HTML id "cart-body" wird der Variable cartBody zugewiesen
 const cartBody = document.getElementById('cart-body');
-//HTML id "cart-bottom wird der Variable cartBottom zugewiesen
+//HTML id "cart-bottom" wird der Variable cartBottom zugewiesen
 const cartBottom = document.getElementById('cart-bottom');
-//HTML id "check-out" wird der Variable checkOut zugewiesen
-const checkOut = document.getElementById('check-Out');
-//Function "showCart();" wird aufgerufen
+//HTML id "search-bar" wird der Variable searchBar zugewiesen
 const searchBar = document.getElementById('search-bar');
+//HTML id "select-items" wird der Variable selectedCategorie zugewiesen
 const selectedCategorie = document.getElementById('select-items');
 
 showCart();
 
 
-//Function initializeProducts wird aufgerufen
+//Function showProducts wird aufgerufen
 showProducts();
 
 
@@ -69,7 +68,7 @@ function showProducts() {
 
       }
     })
-    // cartBottom.style.visibility = 'hidden';
+    cartBottom.style.visibility = 'hidden';
     productsContainer.appendChild(product);
 
   })
@@ -78,7 +77,7 @@ function showProducts() {
 /**
  *
  * Wir holen uns die Daten aus dem Localstorage (string | null) und parsen diese zu einem Objekt.
- * Im Array wird nach dem zum Parameter "name" und "size" passenden Objekt gesucht und einer variable zugewiesen.
+ * Im Array wird nach dem zum Parameter "name" und "size" passenden Objekt gesucht und der variable "existingProduct zugewiesen.
  * if bedingung die überprüft ob es schon ein item mit dem selben namen  gibt
  *      Wenn es sie gibt dann wird die quantity um 1 erhöht
  *      Sonst Objekt "newEntry" mit den Properties "id, name, price, image, size, quantity" die vom Array Products gezogen werden
@@ -107,25 +106,21 @@ function addItemToCart(product, selectedSize) {
       quantity: 1,
       stateVisible: true,
     };
-
     itemData.push(newCartItem);
   }
 
-
   localStorage.setItem(storageKey, JSON.stringify(itemData));
 
-
   showCart();
-
 }
 
 
-/**
- * ein EventListener mit dem event "click" wird dem cartBody zugewiesen
- *     - if  bedingung die überprüft ob der click auf einer CSS-Klasse war
- *     - Function "deleteItemFromCart" wird aufgerufen
- *     - Hier wird bei einem click das parentElement vom jeweiligen Element gelöscht
- */
+//
+// ein EventListener mit dem event "click" wird dem cartBody zugewiesen
+//  - if  bedingung die überprüft ob der click auf einer CSS-Klasse war
+//  - Function "deleteItemFromCart" wird aufgerufen
+//  - Function "showCart" wird aufgerufen
+
 cartBody.addEventListener("click", function (event) {
   if (event.target.classList.contains('btn-action')) {
     deleteItemFromCart();
@@ -142,15 +137,15 @@ cartBody.addEventListener("click", function (event) {
  *      - Konvertiert das Array zu einem String und wird dem localstorage hinzugefügt.
  * @param newEntry
  */
-function saveCart(newEntry) {
-  const itemData = JSON.parse(localStorage.getItem(storageKey));
-  if (!itemData) {
-    localStorage.setItem(storageKey, JSON.stringify([newEntry]));
-  } else {
-    itemData.push(newEntry);
-    localStorage.setItem(storageKey, JSON.stringify(itemData));
-  }
-}
+// function saveCart(newEntry) {
+//   const itemData = JSON.parse(localStorage.getItem(storageKey));
+//   if (!itemData) {
+//     localStorage.setItem(storageKey, JSON.stringify([newEntry]));
+//   } else {
+//     itemData.push(newEntry);
+//     localStorage.setItem(storageKey, JSON.stringify(itemData));
+//   }
+// }
 
 /**
  *  1. Wir holen uns die Daten aus dem Localstorage (string | null) und parsen diese zu einem Objekt.
@@ -201,11 +196,11 @@ function showCart() {
       cartItem.id = product.id;
       cartItem.innerHTML = `
 
-      <img style="height: 100px;" src ="img/${product.image}" alt="bild">
+      <img id="cart-image" src ="img/${product.image}" alt="bild">
       <div class="item-div">
       <span class="item-title">${product.name}</span>
-      <div  class="item-size">Size:${product.size}</div>
-      <span class="price">Price:${product.price}€</span>
+      <div  class="item-size">Size:      ${product.size}</div>
+      <span class="price">Price:   ${product.price}€</span>
       <div class="amount">
         <button class="btn-quantity" id="decrement" data-id='${product.id}'>-</button>
         <span class="item-count">${product.quantity}</span>
@@ -265,29 +260,29 @@ function showCart() {
         localStorage.setItem(storageKey, JSON.stringify(itemData));
       })
 
-      // if (product.stateVisible) {
-      //   cartBottom.style.visibility = 'visible';
-      // }
+      if (product.stateVisible) {
+        cartBottom.style.visibility = 'visible';
+      }
     })
   }
 
-  /**
-   * Hier wird dem innerHTML des cartHeader zugewiesen
-   *      - div klasse titel
-   *      - div id mit dem Gesamtpreis und Gesamtprodukten
-   */
+
+  // Hier wird dem innerHTML des cartHeader zugewiesen
+  // - div klasse titel
+  // - div id mit dem Gesamtpreis und Gesamtprodukten
+
 
   cartHeader.innerHTML = `
     <div class="cart-title">CART</div>
     <div id="cart-total">(${totalQuantity} items)</div>
   `;
 
-  /**
-   * Hier wird dem innerHTML des cartBottom zugewiesen
-   *      - Linie für eine Visuelle trennung zum Body
-   *      - span id mit dem Gesamtpreis
-   *      - Button "checkout" der einen auf eine andere Seite bringt um zu Zahlen
-   */
+
+  //  - Hier wird dem innerHTML des cartBottom zugewiesen
+  //  - Linie für eine Visuelle trennung zum Body
+  //  - span id mit dem Gesamtpreis
+  //  - Button "checkout" der einen auf eine andere Seite bringt um zu Zahlen
+
 
   cartBottom.innerHTML = `
 
@@ -296,25 +291,29 @@ function showCart() {
 
  `;
 
-  /**
-   * Hier wird eine CSS-Klasse dem cartHeader zugewiesen
-   * cartBody wird dem cartHeader als childElement zugewiesen
-   * cartBottom wird dem cartBody als childElement zugewiesen
-   */
+
+  // Hier wird eine CSS-Klasse dem cartHeader zugewiesen
+  // cartBody wird dem cartHeader als childElement zugewiesen
+  // cartBottom wird dem cartBody als childElement zugewiesen
+
 
   cartHeader.classList.add('cart-header');
-  // cartHeader.appendChild(cartBody);
   cartBottom.style.visibility = 'visible';
-  // cartBody.appendChild(cartBottom);
+
 }
 
-function updateStatus(id) {
-  const itemData = JSON.parse(localStorage.getItem(storageKey));
-  const updateVisibility = itemData.find((product) => product.id === id);
-  updateVisibility.stateVisible = !updateVisibility.stateVisible;
-  localStorage.setItem(storageKey, JSON.stringify(itemData));
-}
+// function updateStatus(id) {
+//   const itemData = JSON.parse(localStorage.getItem(storageKey));
+//   const updateVisibility = itemData.find((product) => product.id === id);
+//   updateVisibility.stateVisible = !updateVisibility.stateVisible;
+//   localStorage.setItem(storageKey, JSON.stringify(itemData));
+// }
 
+
+// - ein EventListener mit dem event "keyup" wird dem searchBar zugewiesen
+// - vom Event das Ziel die Value wird auf einer Variable zugewiesen
+// - Im Array wird gefiltert nach dem Item mit der property Namen die, die Value vom Event hat
+// - Function displayItems wird aufgerufen
 
 searchBar.addEventListener("keyup", e => {
   const searchString = e.target.value.toLowerCase();
@@ -325,14 +324,22 @@ searchBar.addEventListener("keyup", e => {
   });
   displayItems(filteredItems);
 });
-console.log(products);
 
 
-const displayItems = (products) => {
-  const htmlString = products
+/**
+ *  Es wird durch das Array itiriert und konvertiert das Product Objekt in den folgenden String
+ *  Und wird der Variable "valueString" zugewiesen
+ *  Der Funktion wird der darauf folgende String wiedergegeben
+ *  Entfernt nach ausführen der Funktion die Komma zwischen jedem Produkt
+ *  ValueString wird dem innerHTML von productsContainer zugewiesen
+ *
+ *
+ * @param products
+ */
 
-    .map((product) => {
-      return `
+function displayItems(products) {
+  const valueString = products.map((product) => {
+    return `
        <div class="product">
       <img src ="img/${product.images}" alt="bild">
       <div class="product-wrap">
@@ -352,12 +359,17 @@ const displayItems = (products) => {
       </div>
       `;
 
-    })
+  })
     .join('');
-  productsContainer.innerHTML = htmlString;
-
+  productsContainer.innerHTML = valueString;
 
 }
+
+
+// - ein EventListener mit dem event "keyup" wird dem searchBar zugewiesen
+// - vom Event das Ziel die Value wird auf einer Variable zugewiesen
+// - Im Array wird gefiltert nach dem Item mit der property season die, die Value vom Event hat
+// - Function displayItems wird aufgerufen
 
 selectedCategorie.addEventListener('change', (e) => {
   const selected = e.target.value;
@@ -378,15 +390,11 @@ selectedCategorie.addEventListener('change', (e) => {
 
 // const nonPants = products.filter(product => product.name !== "Pants");
 // console.log(nonPants);
-/**
- * ToDO: Anzahl des Quantitys/Size speichern    erledigt
- * Container soll Scrollbar sein außere scrollbar entfernen erledigt
 
- * Checkout Sichtbar/Unsichtbar machen anhand ob Produkte im Warenkorb read beheben erledigt
- *
- *
- * Filter nach Kategorie, Frei text filter
+/**
  * Sortierung nach Preis absteigend/aufsteigend
+ * Scrollbar warenkorb
+ *
  */
 
 

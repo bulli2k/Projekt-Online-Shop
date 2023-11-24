@@ -3,10 +3,6 @@ body {
   margin: 0;
 }
 
-header .links {
-  display: flex;
-  justify-content: space-around;
-}
 
 #product-container {
   display: grid;
@@ -131,9 +127,6 @@ header .links {
   }
 }
 
-#total-price {
-  background-color: #eeeee6;
-}
 
 .cart-header {
   width: 400px;
@@ -164,8 +157,12 @@ header .links {
     font-weight: 500;
     cursor: pointer;
   }
+
+  #total-price {
+    background-color: #eeeee6;
+  }
 }
 
-header .product-title {
 
-}
+
+

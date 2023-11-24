@@ -1,11 +1,12 @@
 export const products = [
   {
     id: 1,
-    name: 'tshirt',
+    name: 'T-Shirt',
     price: 30,
     quantity: 1,
     images: 'tshirt.PNG',
     size: "S",
+    season: "Summer",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const products = [
     quantity: 1,
     images: 'pullover.PNG',
     size: "XL",
+    season: "Winter",
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const products = [
     images: 'pants.PNG',
     size: "L",
     quantity: 1,
+    season: "Winter",
   },
 ]
 
