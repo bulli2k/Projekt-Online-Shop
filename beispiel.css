@@ -36,6 +36,7 @@ header .icon-cart {
 
 #product-container {
   display: flex;
+  flex-wrap: wrap;
   padding: 5px;
 
   .product {
@@ -43,10 +44,11 @@ header .icon-cart {
     padding: 20px;
     border-radius: 20px;
     text-align: center;
+    margin: 5px;
 
     & img {
-      height: 400px;
-      width: auto;
+      height: 200px;
+      width: 200px;
       border-radius: 10px;
 
     }
@@ -79,11 +81,13 @@ header .icon-cart {
 }
 
 #cart {
+  height: 700px;
   background-color: #353432;
   display: flex;
   flex-direction: column;
   width: 400px;
   border-radius: 5px;
+  overflow-y: scroll;
 }
 
 .cart-header {
@@ -146,14 +150,13 @@ select:focus {
     padding: 0 0 25px;
     border-bottom: 1px solid #ccc;
 
-   .cart-item:last-child {
+    .cart-item:last-child {
       border-bottom: none;
     }
 
 
     .btn-quantity {
       border-radius: 10px;
-
 
 
     }
@@ -220,4 +223,3 @@ main {
     cursor: pointer;
   }
 }
-

@@ -15,6 +15,9 @@ const searchBar = document.getElementById('search-bar');
 //HTML id "select-items" wird der Variable selectedCategorie zugewiesen
 const selectedCategorie = document.getElementById('select-items');
 
+const priceRange = document.querySelector("#priceRange");
+const priceValue = document.querySelector(".priceValue");
+
 showCart();
 
 
@@ -24,42 +27,19 @@ showProducts();
 
 /**
  * 1. Es wird durch das Array itiriert.
- *    - HTML Element "div" wird erstellt und der Variable "product" zugwiesen
- *    - CSS Klasse "product" wird product zugewiesen
- *    - Image, Name, Size, Quantity, Size und Price werden dem innerHTML von product zugewiesen
+ *    - Es wird die Funktion createProductElement auf die Variable product zugewiesen
  *    - ein EventListener mit dem event "click" wird dem product zugewiesen
  *        - if bedingung die überprüft ob der "click" auf dem BUTTON war
  *        - Vom Product wird auf das Size-Options das erste Element die ausgewählte value zugegriffen
  *        - Wenn "click" auf BUTTON war dann wird die function "addItemToCart" aufgerufen
  *        - Beim Betätigen des Buttons wird die Checkout box von hidden zu visible
  *        - Beim initalisieren des Warenkorbs ist die Checkout box hidden
- *    - product wird als childElement dem productsContainer zugewiesen um die Produkte anzeigen zu lassen
+ *        - product wird als childElement dem productsContainer zugewiesen um die Produkte anzeigen zu lassen
  */
 function showProducts() {
 
   products.forEach((item) => {
-    let product = document.createElement("div");
-    product.classList.add("product");
-    product.innerHTML = `
-
-      <img src ="img/${item.images}" alt="bild">
-      <div class="product-wrap">
-      <span class="title">${item.name}</span>
-      <div class="size">Size:
-        <select class="size-options">
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
-      </div>
-      <span class="price">${item.price}€</span>
-      <div class="wrap-button">
-      <button class="btn-action">Add to Cart</button>
-      </div>
-      </div>
-      `;
-
+    const product = createProductElement(item);
     product.addEventListener("click", function (event) {
       if (event.target.tagName === 'BUTTON') {
         const selectedSize = product.querySelector('.size-options').value;
@@ -73,6 +53,38 @@ function showProducts() {
 
   })
 }
+
+/**
+ *
+ *  - HTML Element "div" wird erstellt und der Variable "product" zugwiesen
+ *  - CSS Klasse "product" wird product zugewiesen
+ *  - Image, Name, Size, Quantity, Size und Price werden dem innerHTML von product zugewiesen
+ **/
+
+function createProductElement(item) {
+  const product = document.createElement("div");
+  product.classList.add("product");
+  product.innerHTML = `
+    <img src ="img/${item.images}" alt="bild">
+    <div class="product-wrap">
+      <span class="title">${item.name}</span>
+      <div class="size">Size:
+        <select class="size-options">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </div>
+      <span class="price">${item.price}€</span>
+      <div class="wrap-button">
+        <button class="btn-action">Add to Cart</button>
+      </div>
+    </div>
+  `;
+  return product;
+}
+
 
 /**
  *
@@ -373,14 +385,51 @@ function displayItems(products) {
 
 selectedCategorie.addEventListener('change', (e) => {
   const selected = e.target.value;
-  const selectedItem = products.filter(product => {
-    return (
-      product.season.includes(selected)
-    );
-  });
-  displayItems(selectedItem);
+  let selectedItem;
 
+  if (selected === 'All Categories') {
+
+    selectedItem = products;
+  } else if (selected === 'Summer' || 'Winter') {
+
+    selectedItem = products.filter(product => {
+      return product.season.includes(selected)
+    });
+  } else {
+    selectedItem = products.sort((a, b) => (a.price > b.price ? 1 : -1));
+  }
+  displayItems(selectedItem);
+  console.log(selectedItem);
 });
+
+function setPrices() {
+  const priceList = products.map((product) => product.price);
+  const minPrice = Math.min(...priceList);
+  const maxPrice = Math.max(...priceList);
+  priceRange.min = minPrice;
+  priceRange.max = maxPrice;
+  priceValue.textContent = minPrice + "€";
+
+  priceRange.addEventListener("input", (e) => {
+    priceValue.textContent = e.target.value + "€";
+    displayItems(products.filter((product) => product.price <= e.target.value));
+  });
+}
+
+// displayItems(products);
+setPrices();
+
+function sortPrice(a, b) {
+  return a.price - b.price;
+}
+
+products.sort(sortPrice);
+
+console.log(products);
+
+
+// const evenNumbers = products.filter(number => number > 90);
+// console.log(evenNumbers);
 
 
 // const Pullover = products.filter(function (product) {
@@ -393,10 +442,6 @@ selectedCategorie.addEventListener('change', (e) => {
 
 /**
  * Sortierung nach Preis absteigend/aufsteigend
- * Scrollbar warenkorb
- *
  */
-
-
 
 
