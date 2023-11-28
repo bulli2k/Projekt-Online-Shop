@@ -46,7 +46,7 @@ export const products = [
   },
   {
     id: 6,
-    name: 'Jacke',
+    name: 'North Face Jacke',
     price: 360,
     images: 'jacke.PNG',
     size: "XL",
@@ -64,7 +64,7 @@ export const products = [
   },
   {
     id: 7,
-    name: 'Jogginghose',
+    name: 'Nike Jogginghose',
     price: 70,
     images: 'jogginghose.PNG',
     size: "XL",
@@ -74,7 +74,7 @@ export const products = [
   {
     id: 8,
     name: 'Kurze Hose',
-    price: 30,
+    price: 40,
     images: 'kurzehose.PNG',
     size: "XL",
     quantity: 1,

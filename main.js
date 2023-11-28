@@ -14,14 +14,18 @@ const cartBottom = document.getElementById('cart-bottom');
 const searchBar = document.getElementById('search-bar');
 //HTML id "select-items" wird der Variable selectedCategorie zugewiesen
 const selectedCategorie = document.getElementById('select-items');
+//HTML id "ascending-descending" wird der Variable ascendingDescending zugewiesen
+const ascendingDescending = document.getElementById("ascending-descending");
+//HTML id "price-range" wird der Variable priceRange zugewiesen
+const priceRange = document.querySelector("#price-range");
+//HTML Klasse "price-value" wird der Variable priceValue zugewiesen
+const priceValue = document.querySelector(".price-value");
 
-const priceRange = document.querySelector("#priceRange");
-const priceValue = document.querySelector(".priceValue");
-
+//Funktion showCart wird aufgerufen
 showCart();
 
 
-//Function showProducts wird aufgerufen
+//Funktion showProducts wird aufgerufen
 showProducts();
 
 
@@ -40,15 +44,17 @@ function showProducts() {
 
   products.forEach((item) => {
     const product = createProductElement(item);
+
+
     product.addEventListener("click", function (event) {
       if (event.target.tagName === 'BUTTON') {
         const selectedSize = product.querySelector('.size-options').value;
         addItemToCart(item, selectedSize);
-        cartBottom.style.visibility = 'visible';
+
 
       }
     })
-    cartBottom.style.visibility = 'hidden';
+
     productsContainer.appendChild(product);
 
   })
@@ -59,6 +65,7 @@ function showProducts() {
  *  - HTML Element "div" wird erstellt und der Variable "product" zugwiesen
  *  - CSS Klasse "product" wird product zugewiesen
  *  - Image, Name, Size, Quantity, Size und Price werden dem innerHTML von product zugewiesen
+ *  - product wird der funktion wiedergegeben
  **/
 
 function createProductElement(item) {
@@ -140,25 +147,6 @@ cartBody.addEventListener("click", function (event) {
   }
 })
 
-
-/**
- * 1. Wir holen uns die Daten aus dem Localstorage (string | null) und parsen diese zu einem Objekt.
- * 2. if bedingung überprüft ob etwas im Array schon gespeichert ist
- *      - Wenn das Array leer ist wird das Objekt als String im Array gespeichert
- *      - Wenn etwas im Array schon gespeichert ist, dann wird das neue Objekt dem Array hinzugefügt
- *      - Konvertiert das Array zu einem String und wird dem localstorage hinzugefügt.
- * @param newEntry
- */
-// function saveCart(newEntry) {
-//   const itemData = JSON.parse(localStorage.getItem(storageKey));
-//   if (!itemData) {
-//     localStorage.setItem(storageKey, JSON.stringify([newEntry]));
-//   } else {
-//     itemData.push(newEntry);
-//     localStorage.setItem(storageKey, JSON.stringify(itemData));
-//   }
-// }
-
 /**
  *  1. Wir holen uns die Daten aus dem Localstorage (string | null) und parsen diese zu einem Objekt.
  *  2. Im Array wird nach dem jeweiligen Objekt gesucht mit der selben id und auf einer variable zugewiesen
@@ -224,6 +212,8 @@ function showCart() {
       `;
 
       cartBody.appendChild(cartItem);
+
+
       /**
        * im innerHTML von cartItem wird die span elements "item-count" der Variable itemCount zugewiesen
        * im innerHTML von cartItem wird auf den button mit der id "increment" ein eventListener getan mit dem typ "click"
@@ -246,6 +236,7 @@ function showCart() {
         document.getElementById('total-price').innerText = `${totalPrice}€`;
         localStorage.setItem(storageKey, JSON.stringify(itemData));
       });
+
 
       /**
        * im innerHTML von cartItem wird auf den button mit der id "decrement" ein eventListener getan mit dem typ "click"
@@ -271,10 +262,6 @@ function showCart() {
         document.getElementById('total-price').innerText = `${totalPrice}€`;
         localStorage.setItem(storageKey, JSON.stringify(itemData));
       })
-
-      if (product.stateVisible) {
-        cartBottom.style.visibility = 'visible';
-      }
     })
   }
 
@@ -310,16 +297,8 @@ function showCart() {
 
 
   cartHeader.classList.add('cart-header');
-  cartBottom.style.visibility = 'visible';
 
 }
-
-// function updateStatus(id) {
-//   const itemData = JSON.parse(localStorage.getItem(storageKey));
-//   const updateVisibility = itemData.find((product) => product.id === id);
-//   updateVisibility.stateVisible = !updateVisibility.stateVisible;
-//   localStorage.setItem(storageKey, JSON.stringify(itemData));
-// }
 
 
 // - ein EventListener mit dem event "keyup" wird dem searchBar zugewiesen
@@ -378,9 +357,15 @@ function displayItems(products) {
 }
 
 
-// - ein EventListener mit dem event "keyup" wird dem searchBar zugewiesen
+// - ein EventListener mit dem event "change" wird dem selectedCategorie zugewiesen
 // - vom Event das Ziel die Value wird auf einer Variable zugewiesen
+// - eine leere Variable wird erstellt
+// - if statement das überprüft ob "All Categories" ausgewählt wurde
+// - Wenn, dann werden alle Produkte angezeigt
+// - Falls eine andere Auswahl vorliegt, dann wird
 // - Im Array wird gefiltert nach dem Item mit der property season die, die Value vom Event hat
+// - Der Funktion wird vom Objekt die Property season mit den richtigen Items wiedergegeben
+// - dann werden die Produkte mit der season die ausgewählt wurde angezeigt
 // - Function displayItems wird aufgerufen
 
 selectedCategorie.addEventListener('change', (e) => {
@@ -390,17 +375,42 @@ selectedCategorie.addEventListener('change', (e) => {
   if (selected === 'All Categories') {
 
     selectedItem = products;
-  } else if (selected === 'Summer' || 'Winter') {
+  } else {
 
     selectedItem = products.filter(product => {
       return product.season.includes(selected)
     });
-  } else {
-    selectedItem = products.sort((a, b) => (a.price > b.price ? 1 : -1));
   }
   displayItems(selectedItem);
   console.log(selectedItem);
 });
+
+
+// - ein EventListener mit dem event "change" wird dem ascendingDescending zugewiesen
+// - vom Event das Ziel die Value wird auf einer Variable zugewiesen
+// - eine leere Variable wird erstellt
+// - if statement das überprüft ob "Min -> Max" ausgewählt wurde
+// - Wenn, dann wird im Array von niedrigsten bis höchsten Preis sortiert
+// - Falls eine andere Auswahl vorliegt, dann wird
+// - Wird im Array vom höchsten bis niedrigsten Preis sortiert
+// - Function displayItems wird aufgerufen
+
+ascendingDescending.addEventListener('change', (e) => {
+  const selected = e.target.value;
+  let selectedItem;
+
+  if (selected === 'Min -> Max') {
+    selectedItem = products.sort((a, b) => a.price - b.price);
+  } else {
+    selectedItem = products.sort((a, b) => b.price - a.price);
+  }
+  displayItems(selectedItem);
+});
+
+
+//
+//
+//
 
 function setPrices() {
   const priceList = products.map((product) => product.price);
@@ -419,13 +429,19 @@ function setPrices() {
 // displayItems(products);
 setPrices();
 
-function sortPrice(a, b) {
-  return a.price - b.price;
-}
 
-products.sort(sortPrice);
+/**
+ * ToDo: Code Dokumentation, Shopping Cart generell verschönern
+ */
 
-console.log(products);
+
+// function sortPrice(a, b) {
+//   return a.price - b.price;
+// }
+//
+// products.sort(sortPrice);
+//
+// console.log(products);
 
 
 // const evenNumbers = products.filter(number => number > 90);
@@ -440,8 +456,5 @@ console.log(products);
 // const nonPants = products.filter(product => product.name !== "Pants");
 // console.log(nonPants);
 
-/**
- * Sortierung nach Preis absteigend/aufsteigend
- */
 
 

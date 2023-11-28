@@ -1,5 +1,5 @@
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: Bahnschrift, sans-serif;
   margin: 0;
 }
 
@@ -9,8 +9,6 @@ body {
   justify-content: space-between;
   padding: 20px 0;
   flex-direction: column;
-
-
 }
 
 #cart-picture {
@@ -19,7 +17,6 @@ body {
 
 header {
   width: fit-content;
-  padding: 0 27%;
   font-size: xx-large;
   display: flex;
   flex-direction: column;
@@ -94,6 +91,7 @@ header .icon-cart {
   font-size: x-large;
   display: flex;
   justify-content: space-between;
+  margin: 5px;
 
 
   .cart-title {
@@ -178,6 +176,9 @@ select:focus {
       padding: 0 25px;
     }
 
+    .amount {
+    }
+
   }
 }
 
@@ -193,6 +194,7 @@ main {
   flex-direction: row;
   align-items: baseline;
   height: fit-content;
+  width: fit-content;
 }
 
 #cart-total {
@@ -213,6 +215,8 @@ main {
 }
 
 .links {
+  padding: 0 700px;
+
   .button-links {
     background-color: lightgrey;
     color: #eee;
@@ -222,4 +226,39 @@ main {
     border: none;
     cursor: pointer;
   }
+
+  & a:link {
+    text-decoration: none;
+  }
+
+  & a:visited {
+    text-decoration: none;
+  }
+
+  & a:hover {
+    text-decoration: none;
+  }
+
+  & a:active {
+    text-decoration: none;
+  }
+}
+
+.price-ranges {
+  display: flex;
+  align-items: baseline;
+  padding: 0 150px;
+
+  & p {
+    font-size: smaller;
+  }
+
+  .price-value {
+    font-size: smaller;
+  }
+}
+
+h5 {
+  margin: 0;
+  width: fit-content;
 }

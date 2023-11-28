@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Men's Clothing</title>
-  <link href="beispiel.css" rel="stylesheet">
+  <link href="css/beispiel.css" rel="stylesheet">
 
 </head>
 
@@ -11,34 +11,38 @@
 
 
 <header>
-  <div class="header-container">
-    <span class="product-title"> Product List</span>
-    <div class="links">
-      <button class="button-links"><a href="index.html" target="_blank">Homepage</a></button>
-      <button class="button-links"><a href="Men.html" target="_blank">Men</a></button>
-      <button class="button-links"><a href="women.html" target="_blank">Women</a></button>
-    </div>
-    <div id="caterogize">
-      <select id="select-items">
-        <option>All Categories</option>
-        <option>Summer</option>
-        <option>Winter</option>
-        <option>Ascending</option>
-        <option>Descending</option>
-      </select>
-      <div class="searchItem">
-        <input id="search-bar" placeholder="Search..." type="text">
 
-      </div>
-      <h5>Price Range</h5>
-      <div class="price">
-        <input id="priceRange" type="range"/>
-        <span class="priceValue">30</span>
-      </div>
-
-    </div>
-
+  <div class="links">
+    <button class="button-links"><a href="index.html" target="_blank">Homepage</a></button>
+    <button class="button-links"><a href="Men.html" target="_blank">Men</a></button>
+    <button class="button-links"><a href="women.html" target="_blank">Women</a></button>
   </div>
+
+  <h5 class="product-list"> Product List</h5>
+  <div id="caterogize">
+    <select id="ascending-descending">
+      <option>...</option>
+      <option>Min -> Max</option>
+      <option>Max -> Min</option>
+    </select>
+    <select id="select-items">
+      <option>All Categories</option>
+      <option>Summer</option>
+      <option>Winter</option>
+    </select>
+    <div class="searchItem">
+      <input id="search-bar" placeholder="Search..." type="text">
+
+
+    </div>
+    <div class="price-ranges">
+      <p>Price Range</p>
+      <input id="price-range" type="range"/>
+      <span class="price-value">30</span>
+    </div>
+  </div>
+
+
   <!--  <div class="icon-cart">-->
   <!--    <img alt="pic" id="cart-picture" src="/img/bag.PNG">-->
   <!--    <span class="quantity-icon-cart">0</span>-->
@@ -69,7 +73,7 @@
 
 
 </main>
-<script src="main (1).js" type="module"></script>
+<script src="js/main.js" type="module"></script>
 
 </body>
 
