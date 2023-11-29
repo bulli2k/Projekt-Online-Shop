@@ -1,0 +1,168 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+
+#product-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+
+  .product {
+    background-color: #eeeee6;
+    padding: 20px;
+
+
+    & img {
+      height: 50%;
+      width: 90%;
+    }
+
+    .title {
+      font-weight: 500;
+      font-size: large;
+    }
+
+    .price {
+      letter-spacing: 7px;
+      font-size: small;
+    }
+
+    .btn-action {
+      background-color: #353432;
+      color: #eee;
+      padding: 5px 10px;
+      border-radius: 20px;
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
+
+#cart-body {
+  width: 250px;
+  float: right;
+  text-align: center;
+  /*border: 1px solid black;*/
+  height: 100%;
+  position: relative;
+  border-radius: 25px;
+
+
+  .cart-title {
+    font-weight: bold;
+    margin: 20px;
+    position: sticky;
+    top: 0;
+  }
+
+  .cart-item {
+    display: grid;
+    grid-template-columns: 70px 150px 50px 1fr;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+
+    .btn-quantity {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      background-color: #eee;
+      color: #555;
+      border-radius: 50%;
+      cursor: pointer;
+
+
+      &:hover {
+        box-shadow: 0 0 5px 5px ghostwhite inset;
+      }
+    }
+
+    & img {
+      width: 200px;
+      border-radius: 25px;
+    }
+
+    .btn-quantity span:nth-child(2) {
+      background-color: transparent;
+      color: #eee;
+    }
+
+    .cart-item:nth-child(even) {
+      background-color: #eee1;
+    }
+
+
+  }
+}
+
+
+.btn-action {
+  border: 2px solid #e1701a;
+  background: #f7a440;
+  color: white;
+  font-weight: bold;
+  margin: 20px;
+  padding: 5px 10px;
+  border-radius: 25px;
+
+  &:hover {
+    box-shadow: 0 0 5px 5px #e1701a inset;
+  }
+}
+
+.check-out {
+  border: 1px solid lightslategrey;
+  background: black;
+  color: white;
+  font-weight: bold;
+  padding: 5px 30px;
+  border-radius: 25px;
+
+  &:hover {
+    box-shadow: 0 0 5px 5px lightslategrey inset;
+  }
+}
+
+
+.cart-header {
+  width: 400px;
+  background-color: #353432;
+  color: #eee;
+  position: fixed;
+  inset: 0 0 0 auto;
+  display: grid;
+  grid-auto-rows: 70px 1fr 70px;
+
+  .cart-title {
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+
+  }
+
+}
+
+#cart-bottom {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  .check-out {
+    background-color: #e8bc0e;
+    border: none;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  #total-price {
+    background-color: #eeeee6;
+  }
+}
+
+
+
+
