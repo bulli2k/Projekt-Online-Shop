@@ -431,7 +431,7 @@ setPrices();
 
 
 /**
- * ToDo: Code Dokumentation, Shopping Cart generell verschönern
+ * ToDo: Code Dokumentation
  */
 
 
