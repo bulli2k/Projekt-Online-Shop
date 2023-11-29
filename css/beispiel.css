@@ -92,6 +92,7 @@ header .icon-cart {
   display: flex;
   justify-content: space-between;
   margin: 5px;
+  border-bottom: 1px solid #ccc;
 
 
   .cart-title {
