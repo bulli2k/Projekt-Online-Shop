@@ -114,7 +114,22 @@ header .icon-cart {
   .check-out {
     background-color: grey;
     font-size: x-large;
+    border: none;
+    & a:link {
+      text-decoration: none;
+    }
 
+    & a:visited {
+      text-decoration: none;
+    }
+
+    & a:hover {
+      text-decoration: none;
+    }
+
+    & a:active {
+      text-decoration: none;
+    }
   }
 
   #total-price {
