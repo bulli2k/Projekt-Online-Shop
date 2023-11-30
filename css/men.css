@@ -299,7 +299,11 @@ main {
 }
 
 .product-title {
+  width: fit-content;
   font-size: x-large;
   font-weight: 800;
 
+}
+.header-links {
+  width: fit-content;
 }
