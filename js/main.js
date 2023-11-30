@@ -350,7 +350,9 @@ function displayItems(products) {
   })
     .join('');
   productsContainer.innerHTML = valueString;
+  AddToCartListeners();
 }
+AddToCartListeners();
 
 
 // - ein EventListener mit dem event "change" wird dem selectedCategorie zugewiesen
@@ -403,9 +405,13 @@ ascendingDescending.addEventListener('change', (e) => {
 });
 
 
-//
-//
-//
+// Erstellung der Preisliste aus den Produktdaten
+// Bestimmung des minimalen und maximalen Preises in der Preisliste:
+// Setzen der Preisspanne für das HTML-Element "priceRange":
+// Initalisierung des Preiswertes "priceValue" mit den minimalsten Preis
+// eventListener wird auf priceRange mit dem event input für die Preisfilterung
+// Aktualisierung des Textinhalts von "priceValue" mit dem jeweiligen ausgewählten Preis und "€"
+// Aktualisierung der angezeigten Produkte basierend auf dem jeweiligen ausgewählten Preisbereich
 
 function setPrices() {
   const priceList = products.map((product) => product.price);
@@ -420,9 +426,32 @@ function setPrices() {
     displayItems(products.filter((product) => product.price <= e.target.value));
   });
 }
-
-// displayItems(products);
 setPrices();
+
+
+// Die Klasse "btn action" wird auf jeden Button zugewiesen
+// Fügt für jeden Button ein event listener hinzu mit dem event click
+// Findet das Parent Element von dem geklickten Buttons
+// Das gefundene Produkt Element von der ausgewählten Größe wird auf einer Variable zugewiesen
+// Suche nach dem entspechenden Produkt im products array basierend auf dem Produktnamen
+// Ruft die Funktion addItemToCart auf
+// Ruft die FUnktion ShowCart auf 
+
+
+function AddToCartListeners() {
+  const addToCartButtons = document.querySelectorAll('.btn-action');
+  addToCartButtons.forEach((button) => {
+    button.addEventListener('click', function (event) {
+      const productElement = event.target.closest('.product');
+      const selectedSize = productElement.querySelector('.size-options').value;
+      const selectedProduct = products.find((item) => item.name === productElement.querySelector('.title').textContent);
+      addItemToCart(selectedProduct, selectedSize);
+      showCart();
+    });
+  });
+}
+
+
 
 
 /**
