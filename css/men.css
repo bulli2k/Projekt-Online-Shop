@@ -225,6 +225,7 @@ main {
   width: fit-content;
   border: 1px solid #ccc;
   border-radius: 5px;
+  border-bottom: none;
 }
 
 #cart-total {
@@ -252,6 +253,7 @@ main {
   align-items: center;
   border: 1px solid #ccc;
   border-radius: 50px;
+  border-bottom: none;
 
   .button-links {
     display: flex;

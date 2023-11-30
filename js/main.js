@@ -50,11 +50,8 @@ function showProducts() {
       if (event.target.tagName === 'BUTTON') {
         const selectedSize = product.querySelector('.size-options').value;
         addItemToCart(item, selectedSize);
-
-
       }
     })
-
     productsContainer.appendChild(product);
 
   })
@@ -353,7 +350,6 @@ function displayItems(products) {
   })
     .join('');
   productsContainer.innerHTML = valueString;
-
 }
 
 
