@@ -256,20 +256,22 @@ main {
   border-bottom: none;
 
   .button-links {
-    display: flex;
-    color: #eee;
-    border-radius: 20px;
+    font-size: 1.2rem;
+    color: black;
     border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    align-items: center;
   }
 
   & a:link {
     text-decoration: none;
+    color: black;
   }
 
   & a:visited {
     text-decoration: none;
+    color: black;
   }
 
   & a:hover {
@@ -278,6 +280,7 @@ main {
 
   & a:active {
     text-decoration: none;
+    color: black;
   }
 }
 
