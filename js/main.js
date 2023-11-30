@@ -378,7 +378,6 @@ selectedCategorie.addEventListener('change', (e) => {
     });
   }
   displayItems(selectedItem);
-  console.log(selectedItem);
 });
 
 
