@@ -57,7 +57,7 @@ export const products = [
     id: 6,
     name: 'Jordan 4er',
     price: 800,
-    images: 'jordan.PNG',
+    images: 'jordans.PNG',
     size: "XL",
     quantity: 1,
     season: "Winter",
