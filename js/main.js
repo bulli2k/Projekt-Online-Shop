@@ -24,10 +24,8 @@ const priceValue = document.querySelector(".price-value");
 //Funktion showCart wird aufgerufen
 showCart();
 
-
 //Funktion showProducts wird aufgerufen
 showProducts();
-
 
 /**
  * 1. Es wird durch das Array itiriert.
@@ -44,7 +42,6 @@ function showProducts() {
 
   products.forEach((item) => {
     const product = createProductElement(item);
-
 
     product.addEventListener("click", function (event) {
       if (event.target.tagName === 'BUTTON') {
@@ -89,7 +86,6 @@ function createProductElement(item) {
   return product;
 }
 
-
 /**
  *
  * Wir holen uns die Daten aus dem Localstorage (string | null) und parsen diese zu einem Objekt.
@@ -104,7 +100,6 @@ function createProductElement(item) {
 
 function addItemToCart(product, selectedSize) {
   const itemData = JSON.parse(localStorage.getItem(storageKey)) || [];
-
 
   const existingProduct = itemData.find((item) => item.name === product.name && item.size === selectedSize);
 
@@ -129,7 +124,6 @@ function addItemToCart(product, selectedSize) {
 
   showCart();
 }
-
 
 //
 // ein EventListener mit dem event "click" wird dem cartBody zugewiesen
@@ -187,7 +181,6 @@ function showCart() {
       totalPrice += product.price * product.quantity;
       totalQuantity += product.quantity;
 
-
       let cartItem = document.createElement("div");
       cartItem.classList.add("cart-item");
       cartItem.id = product.id;
@@ -209,7 +202,6 @@ function showCart() {
       `;
 
       cartBody.appendChild(cartItem);
-
 
       /**
        * im innerHTML von cartItem wird die span elements "item-count" der Variable itemCount zugewiesen
@@ -233,7 +225,6 @@ function showCart() {
         document.getElementById('total-price').innerText = `${totalPrice}€`;
         localStorage.setItem(storageKey, JSON.stringify(itemData));
       });
-
 
       /**
        * im innerHTML von cartItem wird auf den button mit der id "decrement" ein eventListener getan mit dem typ "click"
@@ -262,7 +253,6 @@ function showCart() {
     })
   }
 
-
   // Hier wird dem innerHTML des cartHeader zugewiesen
   // - div klasse titel
   // - div id mit dem Gesamtpreis und Gesamtprodukten
@@ -272,7 +262,6 @@ function showCart() {
     <div class="cart-title">CART</div>
     <div id="cart-total">(${totalQuantity} items)</div>
   `;
-
 
   //  - Hier wird dem innerHTML des cartBottom zugewiesen
   //  - Linie für eine Visuelle trennung zum Body
@@ -287,14 +276,8 @@ function showCart() {
 
  `;
 
-
   // Hier wird eine CSS-Klasse dem cartHeader zugewiesen
-  // cartBody wird dem cartHeader als childElement zugewiesen
-  // cartBottom wird dem cartBody als childElement zugewiesen
-
-
   cartHeader.classList.add('cart-header');
-
 }
 
 
@@ -302,6 +285,7 @@ function showCart() {
 // - vom Event das Ziel die Value wird auf einer Variable zugewiesen
 // - Im Array wird gefiltert nach dem Item mit der property Namen die, die Value vom Event hat
 // - Function displayItems wird aufgerufen
+
 
 searchBar.addEventListener("keyup", e => {
   const searchString = e.target.value.toLowerCase();
@@ -325,6 +309,7 @@ searchBar.addEventListener("keyup", e => {
  *
  * @param products
  */
+
 
 function displayItems(products) {
   const valueString = products.map((product) => {
@@ -366,6 +351,7 @@ function displayItems(products) {
 // - dann werden die Produkte mit der season die ausgewählt wurde angezeigt
 // - Function displayItems wird aufgerufen
 
+
 selectedCategorie.addEventListener('change', (e) => {
   const selected = e.target.value;
   let selectedItem;
@@ -392,6 +378,7 @@ selectedCategorie.addEventListener('change', (e) => {
 // - Wird im Array vom höchsten bis niedrigsten Preis sortiert
 // - Function displayItems wird aufgerufen
 
+
 ascendingDescending.addEventListener('change', (e) => {
   const selected = e.target.value;
   let selectedItem;
@@ -413,6 +400,8 @@ ascendingDescending.addEventListener('change', (e) => {
 * Aktualisierung des Textinhalts von "priceValue" mit dem jeweiligen ausgewählten Preis und "€"
 * Aktualisierung der angezeigten Produkte basierend auf dem jeweiligen ausgewählten Preisbereich
 */
+
+
 function setPrices() {
   const priceList = products.map((product) => product.price);
   const minPrice = Math.min(...priceList);
@@ -451,6 +440,9 @@ function AddToCartListeners() {
     });
   });
 }
+
+
+
 
 
 
