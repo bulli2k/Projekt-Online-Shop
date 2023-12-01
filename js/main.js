@@ -320,6 +320,7 @@ searchBar.addEventListener("keyup", e => {
  *  Der Funktion wird der darauf folgende String wiedergegeben
  *  Entfernt nach ausführen der Funktion die Komma zwischen jedem Produkt
  *  ValueString wird dem innerHTML von productsContainer zugewiesen
+ *  AddToCart funktion wird aufgerufen
  *
  *
  * @param products
@@ -429,13 +430,14 @@ function setPrices() {
 setPrices();
 
 
-// Die Klasse "btn action" wird auf jeden Button zugewiesen
-// Fügt für jeden Button ein event listener hinzu mit dem event click
-// Findet das Parent Element von dem geklickten Buttons
-// Das gefundene Produkt Element von der ausgewählten Größe wird auf einer Variable zugewiesen
-// Suche nach dem entspechenden Produkt im products array basierend auf dem Produktnamen
-// Ruft die Funktion addItemToCart auf
-// Ruft die FUnktion ShowCart auf 
+/**Die Klasse "btn action" wird auf jeden Button zugewiesen
+* Fügt für jeden Button ein event listener hinzu mit dem event click
+* Findet das Parent Element von dem geklickten Buttons
+* Das gefundene Produkt Element von der ausgewählten Größe wird auf einer Variable zugewiesen
+* Suche nach dem entspechenden Produkt im products array basierend auf dem Produktnamen
+* Ruft die Funktion addItemToCart auf
+* Ruft die FUnktion ShowCart auf
+ * */
 
 
 function AddToCartListeners() {
