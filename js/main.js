@@ -228,7 +228,7 @@ function showCart() {
 
       /**
        * im innerHTML von cartItem wird auf den button mit der id "decrement" ein eventListener getan mit dem typ "click"
-       * if bedingung die überprüft ob quantity größer 0 ist, wenn es größer null ist dann:
+       * if bedingung die überprüft ob quantity größer oder gleich 0 ist, wenn es größer null ist dann:
        *    Pro Klick:
        *     - Wird die quantity um 1 subtrahiert
        *     - Wird die quantity vom Array dem innerText vom itemCount zugewiesen
@@ -425,7 +425,7 @@ setPrices();
 * Suche nach dem entspechenden Produkt im products array basierend auf dem Produktnamen
 * Ruft die Funktion addItemToCart auf
 * Ruft die FUnktion ShowCart auf
- * */
+ * * */
 
 
 function AddToCartListeners() {
@@ -448,7 +448,9 @@ function AddToCartListeners() {
 
 
 /**
- * ToDo: Code Dokumentation
+ * ToDo: Men seite kenntlich machen, Wiederverwendbarer Code in anderen Dateien tuhen(reusable components),
+ * quantity auf 0 dann item löschen, joel hinzufügen auf github, women seite auch auf die men seite transferieren so,dass sich
+ * Nur die produkte aktualisieren
  */
 
 
