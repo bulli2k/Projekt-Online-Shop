@@ -353,7 +353,6 @@ function displayItems(products) {
   productsContainer.innerHTML = valueString;
   AddToCartListeners();
 }
-AddToCartListeners();
 
 
 // - ein EventListener mit dem event "change" wird dem selectedCategorie zugewiesen
@@ -406,14 +405,14 @@ ascendingDescending.addEventListener('change', (e) => {
 });
 
 
-// Erstellung der Preisliste aus den Produktdaten
-// Bestimmung des minimalen und maximalen Preises in der Preisliste:
-// Setzen der Preisspanne für das HTML-Element "priceRange":
-// Initalisierung des Preiswertes "priceValue" mit den minimalsten Preis
-// eventListener wird auf priceRange mit dem event input für die Preisfilterung
-// Aktualisierung des Textinhalts von "priceValue" mit dem jeweiligen ausgewählten Preis und "€"
-// Aktualisierung der angezeigten Produkte basierend auf dem jeweiligen ausgewählten Preisbereich
-
+/** Erstellung der Preisliste aus den Produktdaten
+* Bestimmung des minimalen und maximalen Preises in der Preisliste:
+* Setzen der Preisspanne für das HTML-Element "priceRange":
+* Initalisierung des Preiswertes "priceValue" mit den minimalsten Preis
+* eventListener wird auf priceRange mit dem event input für die Preisfilterung
+* Aktualisierung des Textinhalts von "priceValue" mit dem jeweiligen ausgewählten Preis und "€"
+* Aktualisierung der angezeigten Produkte basierend auf dem jeweiligen ausgewählten Preisbereich
+*/
 function setPrices() {
   const priceList = products.map((product) => product.price);
   const minPrice = Math.min(...priceList);

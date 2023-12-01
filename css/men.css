@@ -237,6 +237,7 @@ main {
   padding-left: 5%;
 }
 
+
 #search-bar {
   border: none;
   outline: none;
@@ -246,6 +247,7 @@ main {
   width: 300px;
   margin: 0 150px;
 }
+
 
 .links {
   width: 800px;
@@ -263,26 +265,23 @@ main {
     border-radius: 5px;
     cursor: pointer;
   }
-
   & a:link {
     text-decoration: none;
     color: black;
   }
-
   & a:visited {
     text-decoration: none;
     color: black;
   }
-
   & a:hover {
     text-decoration: none;
   }
-
   & a:active {
     text-decoration: none;
     color: black;
   }
 }
+
 
 .price-ranges {
   display: flex;
