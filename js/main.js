@@ -441,6 +441,14 @@ function AddToCartListeners() {
   });
 }
 
+document.querySelectorAll('.button-links').forEach(link => {
+  if(link.href === window.location.href) {
+    link.setAttribute('aria-current', 'page');
+  }
+})
+
+
+
 /**s
  * ToDo:
  * Men seite kenntlich machen,

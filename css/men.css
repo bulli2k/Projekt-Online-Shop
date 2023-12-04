@@ -306,7 +306,8 @@ main {
 .header-links {
   width: fit-content;
 }
-/*nav a:hover,*/
-/*nav a.active {*/
-/*  */
-/*}*/
+
+.button-links[aria-current="page"] {
+  background-color: #007BFF;
+  color: #ffffff;
+}
