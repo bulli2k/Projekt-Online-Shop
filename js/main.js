@@ -441,13 +441,7 @@ function AddToCartListeners() {
   });
 }
 
-
-
-
-
-
-
-/**
+/**s
  * ToDo:
  * Men seite kenntlich machen,
  * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components),
@@ -455,6 +449,19 @@ function AddToCartListeners() {
  * joel hinzufügen auf github,
  * women seite auch auf die men seite transferieren so,dass sich Nur die produkte aktualisieren
  */
+
+
+// const navLinks = document.querySelectorAll('.links');
+// const windowPathname = window.location.pathname;
+//
+//
+// navLinks.forEach(link => {
+//   if(navLinks.href.includes(windowPathname)) {
+//     navLinks.classList.add('active');
+//   }
+// })
+
+
 
 
 // function sortPrice(a, b) {
