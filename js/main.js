@@ -240,6 +240,8 @@ function showCart() {
 
       cartItem.querySelector("#decrement").addEventListener("click", () => {
         if (product.quantity <= 0) {
+          deleteItemFromCart(product.id);
+          showCart();
           return;
         }
         product.quantity--;
@@ -291,7 +293,7 @@ searchBar.addEventListener("keyup", e => {
   const searchString = e.target.value.toLowerCase();
   const filteredItems = products.filter(product => {
     return (
-      product.name.toLowerCase().includes(searchString)
+        product.name.toLowerCase().includes(searchString)
     );
   });
   displayItems(filteredItems);
@@ -334,7 +336,7 @@ function displayItems(products) {
       `;
 
   })
-    .join('');
+      .join('');
   productsContainer.innerHTML = valueString;
   AddToCartListeners();
 }
@@ -393,13 +395,13 @@ ascendingDescending.addEventListener('change', (e) => {
 
 
 /** Erstellung der Preisliste aus den Produktdaten
-* Bestimmung des minimalen und maximalen Preises in der Preisliste:
-* Setzen der Preisspanne für das HTML-Element "priceRange":
-* Initalisierung des Preiswertes "priceValue" mit den minimalsten Preis
-* eventListener wird auf priceRange mit dem event input für die Preisfilterung
-* Aktualisierung des Textinhalts von "priceValue" mit dem jeweiligen ausgewählten Preis und "€"
-* Aktualisierung der angezeigten Produkte basierend auf dem jeweiligen ausgewählten Preisbereich
-*/
+ * Bestimmung des minimalen und maximalen Preises in der Preisliste:
+ * Setzen der Preisspanne für das HTML-Element "priceRange":
+ * Initalisierung des Preiswertes "priceValue" mit den minimalsten Preis
+ * eventListener wird auf priceRange mit dem event input für die Preisfilterung
+ * Aktualisierung des Textinhalts von "priceValue" mit dem jeweiligen ausgewählten Preis und "€"
+ * Aktualisierung der angezeigten Produkte basierend auf dem jeweiligen ausgewählten Preisbereich
+ */
 
 
 function setPrices() {
@@ -419,12 +421,12 @@ setPrices();
 
 
 /**Die Klasse "btn action" wird auf jeden Button zugewiesen
-* Fügt für jeden Button ein event listener hinzu mit dem event click
-* Findet das Parent Element von dem geklickten Buttons
-* Das gefundene Produkt Element von der ausgewählten Größe wird auf einer Variable zugewiesen
-* Suche nach dem entspechenden Produkt im products array basierend auf dem Produktnamen
-* Ruft die Funktion addItemToCart auf
-* Ruft die FUnktion ShowCart auf
+ * Fügt für jeden Button ein event listener hinzu mit dem event click
+ * Findet das Parent Element von dem geklickten Buttons
+ * Das gefundene Produkt Element von der ausgewählten Größe wird auf einer Variable zugewiesen
+ * Suche nach dem entspechenden Produkt im products array basierend auf dem Produktnamen
+ * Ruft die Funktion addItemToCart auf
+ * Ruft die FUnktion ShowCart auf
  * * */
 
 
@@ -451,9 +453,10 @@ document.querySelectorAll('.button-links').forEach(link => {
 
 /**s
  * ToDo:
- * Men seite kenntlich machen,
+ * Men seite kenntlich machen,        x
+ *
  * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components),
- * quantity auf 0 dann item löschen,
+ * quantity auf 0 dann item löschen,          x
  * joel hinzufügen auf github,
  * women seite auch auf die men seite transferieren so,dass sich Nur die produkte aktualisieren
  */
@@ -492,6 +495,3 @@ document.querySelectorAll('.button-links').forEach(link => {
 
 // const nonPants = products.filter(product => product.name !== "Pants");
 // console.log(nonPants);
-
-
-
