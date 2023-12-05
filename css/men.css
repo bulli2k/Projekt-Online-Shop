@@ -85,6 +85,7 @@ header .icon-cart {
   border-radius: 10px;
   overflow-y: scroll;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
 }
 
 .cart-header {
