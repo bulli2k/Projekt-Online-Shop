@@ -21,6 +21,9 @@ const priceRange = document.querySelector("#price-range");
 //HTML Klasse "price-value" wird der Variable priceValue zugewiesen
 const priceValue = document.querySelector(".price-value");
 
+const filterMen = document.getElementById('filter-men');
+const filterWomen = document.getElementById('filter-women');
+
 //Funktion showCart wird aufgerufen
 showCart();
 
@@ -449,16 +452,36 @@ document.querySelectorAll('.button-links').forEach(link => {
   }
 })
 
+filterMen.addEventListener('click', () => {
+  filterMen.setAttribute('aria-current', 'page');
+  filterWomen.removeAttribute('aria-current');
+  const filteredMenProducts = products.filter(product => product.gender === 'Men');
+
+
+  displayItems(filteredMenProducts);
+});
+
+filterWomen.addEventListener('click', () => {
+  filterWomen.setAttribute('aria-current', 'page');
+  filterMen.removeAttribute('aria-current')
+  const filteredWomenProducts = products.filter(product => product.gender === 'Women');
+
+
+  displayItems(filteredWomenProducts);
+});
 
 
 /**s
  * ToDo:
- * Men seite kenntlich machen,        x
+ * Men seite kenntlich machen,                x
+ * quantity auf 0 dann item löschen,          x
+ * joel hinzufügen auf github,                x
+ * Produkte aktualisieren anhand des Geschlechtes   x
+ *
  *
  * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components),
- * quantity auf 0 dann item löschen,          x
- * joel hinzufügen auf github,
- * women seite auch auf die men seite transferieren so,dass sich Nur die produkte aktualisieren
+ *
+
  */
 
 
