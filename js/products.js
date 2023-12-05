@@ -7,6 +7,7 @@ export const products = [
     images: 'tshirt.PNG',
     size: "S",
     season: "Summer",
+    gender: 'Men'
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const products = [
     images: 'pullover.PNG',
     size: "XL",
     season: "Winter",
+    gender: 'Men'
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export const products = [
     size: "L",
     quantity: 1,
     season: "Winter",
+    gender: 'Men'
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export const products = [
     size: "45",
     quantity: 1,
     season: "Summer",
+    gender: 'Men'
   },
   {
     id: 5,
@@ -43,6 +47,7 @@ export const products = [
     size: "XL",
     quantity: 1,
     season: "Winter",
+    gender: 'Men'
   },
   {
     id: 6,
@@ -52,6 +57,7 @@ export const products = [
     size: "XL",
     quantity: 1,
     season: "Winter",
+    gender: 'Men'
   },
   {
     id: 6,
@@ -61,6 +67,7 @@ export const products = [
     size: "XL",
     quantity: 1,
     season: "Winter",
+    gender: 'Men'
   },
   {
     id: 7,
@@ -70,6 +77,7 @@ export const products = [
     size: "XL",
     quantity: 1,
     season: "Summer",
+    gender: 'Men'
   },
   {
     id: 8,
@@ -79,32 +87,36 @@ export const products = [
     size: "XL",
     quantity: 1,
     season: "Summer",
+    gender: 'Men'
   },
-]
-
-export const productsW = [
   {
-    id: 1,
+    id: 9,
     name: 'Dress',
     price: 450,
     quantity: 1,
     images: 'dress.PNG',
     size: 'S',
+    gender: 'Women',
+    season: "Summer",
   },
   {
-    id: 2,
+    id: 10,
     name: 'Pants',
     price: 120,
     quantity: 1,
     images: 'wpants.PNG',
     size: 'S',
+    gender: 'Women',
+    season: "Winter",
   },
   {
-    id: 3,
+    id: 11,
     name: 'Bag',
     price: 700,
     quantity: 1,
     images: 'prada.PNG',
     size: 'S',
+    gender: 'Women',
+    season: "Winter",
   },
 ]

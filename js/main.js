@@ -240,8 +240,6 @@ function showCart() {
 
       cartItem.querySelector("#decrement").addEventListener("click", () => {
         if (product.quantity <= 0) {
-          deleteItemFromCart(product.id);
-          showCart();
           return;
         }
         product.quantity--;
@@ -453,10 +451,9 @@ document.querySelectorAll('.button-links').forEach(link => {
 
 /**s
  * ToDo:
- * Men seite kenntlich machen,        x
- * 
+ * Men seite kenntlich machen,
  * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components),
- * quantity auf 0 dann item löschen,          x
+ * quantity auf 0 dann item löschen,
  * joel hinzufügen auf github,
  * women seite auch auf die men seite transferieren so,dass sich Nur die produkte aktualisieren
  */
