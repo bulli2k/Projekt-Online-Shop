@@ -433,11 +433,7 @@ filterWomen.addEventListener('click', () => {
  * quantity auf 0 dann item löschen,          x
  * joel hinzufügen auf github,                x
  * Produkte aktualisieren anhand des Geschlechtes   x
- *
- *
- * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components),
- *
-
+ * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components),   x
  */
 
 
