@@ -1,4 +1,5 @@
-
+//Localstorage Key "cart" wird der Variable "storageKey"  zugewiesen
+export const storageKey = 'Mcart';
 
 /**
  *
@@ -29,4 +30,18 @@ export function createProductElement(item) {
     </div>
   `;
     return product;
+}
+
+/**
+ *  1. Wir holen uns die Daten aus dem Localstorage (string | null) und parsen diese zu einem Objekt.
+ *  2. Im Array wird nach dem jeweiligen Objekt gesucht mit der selben id und auf einer variable zugewiesen
+ *  3. Objekt wird aus dem Array gelöscht
+ *  4. Verändertes Array wird als String im Localstorage gespeichert
+ * @param id
+ */
+ export function deleteItemFromCart(id) {
+    const itemData = JSON.parse(localStorage.getItem(storageKey));
+    const index = itemData.findIndex((product) => product.id === id);
+    itemData.splice(index, 1);
+    localStorage.setItem(storageKey, JSON.stringify(itemData));
 }
