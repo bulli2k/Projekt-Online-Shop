@@ -1,6 +1,6 @@
 // Array von der Datei "products.js" importiert
 import {products} from "./products.js";
-import {createProductElement,deleteItemFromCart} from "./components.js";
+import {createProductElement, deleteItemFromCart, Header} from "./components.js";
 import {storageKey} from "./components.js";
 
 //HTML id "product-container" wird der Variable "productsContainer" zugewiesen
@@ -421,7 +421,7 @@ filterWomen.addEventListener('click', () => {
 
   displayItems(filteredWomenProducts);
 });
-
+customElements.define('main-header', Header);
 
 /**s
  * ToDo:
