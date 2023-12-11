@@ -344,7 +344,7 @@ ascendingDescending.addEventListener('change', (e) => {
   const selected = e.target.value;
   let selectedItem;
 
-  if (selected === 'Min -> Max') {
+  if (selected === 'Ascending') {
     selectedItem = products.sort((a, b) => a.price - b.price);
   } else {
     selectedItem = products.sort((a, b) => b.price - a.price);
@@ -402,11 +402,7 @@ function AddToCartListeners() {
   });
 }
 
-document.querySelectorAll('.button-links').forEach(link => {
-  if(link.href === window.location.href) {
-    link.setAttribute('aria-current', 'page');
-  }
-})
+
 
 filterMen.addEventListener('click', () => {
   filterMen.setAttribute('aria-current', 'page');
@@ -429,44 +425,14 @@ filterWomen.addEventListener('click', () => {
 
 /**s
  * ToDo:
- * Men seite kenntlich machen,                x
- * quantity auf 0 dann item löschen,          x
- * joel hinzufügen auf github,                x
- * Produkte aktualisieren anhand des Geschlechtes   x
- * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components),   x
+ * auch products seite kenntlich machen        x
+ * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components), header wiederverwendbar machen
+ * Nachdem man auf der Men oder Women seite ist sollen sich die Filterisierungen nur auf die jeweiligen Produkte dann beziehen
  */
 
 
-// const navLinks = document.querySelectorAll('.links');
-// const windowPathname = window.location.pathname;
-//
-//
-// navLinks.forEach(link => {
-//   if(navLinks.href.includes(windowPathname)) {
-//     navLinks.classList.add('active');
+// document.querySelectorAll('.button-links').forEach(link => {
+//   if(link.href === window.location.href) {
+//     link.setAttribute('aria-current', 'page');
 //   }
 // })
-
-
-
-
-// function sortPrice(a, b) {
-//   return a.price - b.price;
-// }
-//
-// products.sort(sortPrice);
-//
-// console.log(products);
-
-
-// const evenNumbers = products.filter(number => number > 90);
-// console.log(evenNumbers);
-
-
-// const Pullover = products.filter(function (product) {
-//   return product.name === 'Pullover';
-// });
-// console.log(Pullover);
-
-// const nonPants = products.filter(product => product.name !== "Pants");
-// console.log(nonPants);

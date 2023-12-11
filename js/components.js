@@ -45,3 +45,6 @@ export function createProductElement(item) {
     itemData.splice(index, 1);
     localStorage.setItem(storageKey, JSON.stringify(itemData));
 }
+
+export {} from "Men.html";
+
