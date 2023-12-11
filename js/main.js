@@ -423,6 +423,7 @@ filterWomen.addEventListener('click', () => {
 });
 customElements.define('main-header', Header);
 
+
 /**s
  * ToDo:
  * auch products seite kenntlich machen        x
