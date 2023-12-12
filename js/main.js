@@ -1,7 +1,8 @@
 // Array von der Datei "products.js" importiert
 import {products} from "./products.js";
-import {createProductElement, deleteItemFromCart, Header} from "./components.js";
+import {createProductElement, deleteItemFromCart} from "./components.js";
 import {storageKey} from "./components.js";
+// import {headerElement, createHeader} from "./header";
 
 //HTML id "product-container" wird der Variable "productsContainer" zugewiesen
 const productsContainer = document.getElementById('product-container');
@@ -18,15 +19,15 @@ const selectedCategorie = document.getElementById('select-items');
 //HTML id "ascending-descending" wird der Variable ascendingDescending zugewiesen
 const ascendingDescending = document.getElementById("ascending-descending");
 //HTML id "price-range" wird der Variable priceRange zugewiesen
-const priceRange = document.querySelector("#price-range");
-//HTML Klasse "price-value" wird der Variable priceValue zugewiesen
-const priceValue = document.querySelector(".price-value");
+
 
 const filterMen = document.getElementById('filter-men');
 const filterWomen = document.getElementById('filter-women');
 
 //Funktion showCart wird aufgerufen
 showCart();
+
+
 
 //Funktion showProducts wird aufgerufen
 showProducts();
@@ -272,7 +273,7 @@ searchBar.addEventListener("keyup", e => {
  */
 
 
-function displayItems(products) {
+export function displayItems(products) {
   const valueString = products.map((product) => {
     return `
        <div class="product">
@@ -363,20 +364,7 @@ ascendingDescending.addEventListener('change', (e) => {
  */
 
 
-function setPrices() {
-  const priceList = products.map((product) => product.price);
-  const minPrice = Math.min(...priceList);
-  const maxPrice = Math.max(...priceList);
-  priceRange.min = minPrice;
-  priceRange.max = maxPrice;
-  priceValue.textContent = minPrice + "€";
 
-  priceRange.addEventListener("input", (e) => {
-    priceValue.textContent = e.target.value + "€";
-    displayItems(products.filter((product) => product.price <= e.target.value));
-  });
-}
-setPrices();
 
 
 /**Die Klasse "btn action" wird auf jeden Button zugewiesen
@@ -421,7 +409,7 @@ filterWomen.addEventListener('click', () => {
 
   displayItems(filteredWomenProducts);
 });
-customElements.define('main-header', Header);
+
 
 
 /**s
