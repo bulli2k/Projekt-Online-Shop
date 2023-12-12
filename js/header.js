@@ -167,5 +167,3 @@ customElements.define('header-component', Header);
 
 
 
-
-

@@ -19,7 +19,9 @@ const selectedCategorie = document.getElementById('select-items');
 //HTML id "ascending-descending" wird der Variable ascendingDescending zugewiesen
 const ascendingDescending = document.getElementById("ascending-descending");
 //HTML id "price-range" wird der Variable priceRange zugewiesen
-
+const priceRange = document.querySelector("#price-range");
+//HTML Klasse "price-value" wird der Variable priceValue zugewiesen
+const priceValue = document.querySelector(".price-value");
 
 const filterMen = document.getElementById('filter-men');
 const filterWomen = document.getElementById('filter-women');
@@ -273,7 +275,7 @@ searchBar.addEventListener("keyup", e => {
  */
 
 
-export function displayItems(products) {
+function displayItems(products) {
   const valueString = products.map((product) => {
     return `
        <div class="product">
@@ -364,7 +366,20 @@ ascendingDescending.addEventListener('change', (e) => {
  */
 
 
+function setPrices() {
+  const priceList = products.map((product) => product.price);
+  const minPrice = Math.min(...priceList);
+  const maxPrice = Math.max(...priceList);
+  priceRange.min = minPrice;
+  priceRange.max = maxPrice;
+  priceValue.textContent = minPrice + "€";
 
+  priceRange.addEventListener("input", (e) => {
+    priceValue.textContent = e.target.value + "€";
+    displayItems(products.filter((product) => product.price <= e.target.value));
+  });
+}
+setPrices();
 
 
 /**Die Klasse "btn action" wird auf jeden Button zugewiesen
