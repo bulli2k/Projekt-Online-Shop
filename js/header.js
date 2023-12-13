@@ -1,3 +1,5 @@
+import {products} from "./products.js";
+import {displayItems} from "./main.js";
 
 export const headerTemplate = document.createElement('template');
 headerTemplate.innerHTML = `
@@ -151,19 +153,32 @@ select:focus {
 
 export class Header extends HTMLElement {
     constructor() {
-        // Always call super first in constructor
+        // Always call super first in the constructor
         super();
+
         const shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.appendChild(headerTemplate.content);
+        shadowRoot.appendChild(headerTemplate.content.cloneNode(true));
+
+        const searchBar = shadowRoot.querySelector('#search-bar');
+
+
+
+        searchBar.addEventListener('keyup', (e) => {
+            const searchString = e.target.value.toLowerCase();
+            const filteredItems = products.filter(product => {
+                return product.name.toLowerCase().includes(searchString);
+            });
+
+            displayItems(filteredItems); {
+                displayItems(filteredItems, this.shadowRoot);
+            }
+
+        });
     }
-
     connectedCallback() {
-
     }
 }
 
 customElements.define('header-component', Header);
-
-
 
 
