@@ -249,7 +249,14 @@ function showCart() {
 // - Im Array wird gefiltert nach dem Item mit der property Namen die, die Value vom Event hat
 // - Function displayItems wird aufgerufen
 
-
+// searchBar.addEventListener('keyup', (e) => {
+//   const searchString = e.target.value.toLowerCase();
+//   const filteredItems = products.filter(product => {
+//     return product.name.toLowerCase().includes(searchString);
+//   });
+//
+//   displayItems(filteredItems);
+// });
 
 
 
