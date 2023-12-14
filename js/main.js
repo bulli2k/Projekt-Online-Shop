@@ -1,7 +1,6 @@
 // Array von der Datei "products.js" importiert
 import {products} from "./products.js";
 import {createProductElement, deleteItemFromCart, storageKey} from "./components.js";
-// import {headerElement, createHeader} from "./header";
 
 //HTML id "product-container" wird der Variable "productsContainer" zugewiesen
 const productsContainer = document.getElementById('product-container');
@@ -11,24 +10,12 @@ const cartHeader = document.getElementById('cart-header');
 const cartBody = document.getElementById('cart-body');
 //HTML id "cart-bottom" wird der Variable cartBottom zugewiesen
 const cartBottom = document.getElementById('cart-bottom');
-//HTML id "search-bar" wird der Variable searchBar zugewiesen
-const searchBar = document.getElementById('search-bar');
-//HTML id "select-items" wird der Variable selectedCategorie zugewiesen
-const selectedCategorie = document.getElementById('select-items');
-//HTML id "ascending-descending" wird der Variable ascendingDescending zugewiesen
-const ascendingDescending = document.getElementById("ascending-descending");
-//HTML id "price-range" wird der Variable priceRange zugewiesen
-const priceRange = document.querySelector("#price-range");
-//HTML Klasse "price-value" wird der Variable priceValue zugewiesen
-const priceValue = document.querySelector(".price-value");
 
 const filterMen = document.getElementById('filter-men');
 const filterWomen = document.getElementById('filter-women');
 
 //Funktion showCart wird aufgerufen
 showCart();
-
-
 
 //Funktion showProducts wird aufgerufen
 showProducts();
@@ -243,23 +230,6 @@ function showCart() {
   cartHeader.classList.add('cart-header');
 }
 
-
-// - ein EventListener mit dem event "keyup" wird dem searchBar zugewiesen
-// - vom Event das Ziel die Value wird auf einer Variable zugewiesen
-// - Im Array wird gefiltert nach dem Item mit der property Namen die, die Value vom Event hat
-// - Function displayItems wird aufgerufen
-
-// searchBar.addEventListener('keyup', (e) => {
-//   const searchString = e.target.value.toLowerCase();
-//   const filteredItems = products.filter(product => {
-//     return product.name.toLowerCase().includes(searchString);
-//   });
-//
-//   displayItems(filteredItems);
-// });
-
-
-
 /**
  *  Es wird durch das Array itiriert und konvertiert das Product Objekt in den folgenden String
  *  Und wird der Variable "valueString" zugewiesen
@@ -300,95 +270,14 @@ export function displayItems(products, shadowRoot) {
   AddToCartListeners(shadowRoot);
 }
 
-
-// // - ein EventListener mit dem event "change" wird dem selectedCategorie zugewiesen
-// // - vom Event das Ziel die Value wird auf einer Variable zugewiesen
-// // - eine leere Variable wird erstellt
-// // - if statement das überprüft ob "All Categories" ausgewählt wurde
-// // - Wenn, dann werden alle Produkte angezeigt
-// // - Falls eine andere Auswahl vorliegt, dann wird
-// // - Im Array wird gefiltert nach dem Item mit der property season die, die Value vom Event hat
-// // - Der Funktion wird vom Objekt die Property season mit den richtigen Items wiedergegeben
-// // - dann werden die Produkte mit der season die ausgewählt wurde angezeigt
-// // - Function displayItems wird aufgerufen
-//
-//
-// selectedCategorie.addEventListener('change', (e) => {
-//   const selected = e.target.value;
-//   let selectedItem;
-//
-//   if (selected === 'All Categories') {
-//
-//     selectedItem = products;
-//   } else {
-//
-//     selectedItem = products.filter(product => {
-//       return product.season.includes(selected)
-//     });
-//   }
-//   displayItems(selectedItem);
-// });
-//
-//
-// // - ein EventListener mit dem event "change" wird dem ascendingDescending zugewiesen
-// // - vom Event das Ziel die Value wird auf einer Variable zugewiesen
-// // - eine leere Variable wird erstellt
-// // - if statement das überprüft ob "Min -> Max" ausgewählt wurde
-// // - Wenn, dann wird im Array von niedrigsten bis höchsten Preis sortiert
-// // - Falls eine andere Auswahl vorliegt, dann wird
-// // - Wird im Array vom höchsten bis niedrigsten Preis sortiert
-// // - Function displayItems wird aufgerufen
-//
-//
-// ascendingDescending.addEventListener('change', (e) => {
-//   const selected = e.target.value;
-//   let selectedItem;
-//
-//   if (selected === 'Ascending') {
-//     selectedItem = products.sort((a, b) => a.price - b.price);
-//   } else {
-//     selectedItem = products.sort((a, b) => b.price - a.price);
-//   }
-//   displayItems(selectedItem);
-// });
-//
-//
-// /** Erstellung der Preisliste aus den Produktdaten
-//  * Bestimmung des minimalen und maximalen Preises in der Preisliste:
-//  * Setzen der Preisspanne für das HTML-Element "priceRange":
-//  * Initalisierung des Preiswertes "priceValue" mit den minimalsten Preis
-//  * eventListener wird auf priceRange mit dem event input für die Preisfilterung
-//  * Aktualisierung des Textinhalts von "priceValue" mit dem jeweiligen ausgewählten Preis und "€"
-//  * Aktualisierung der angezeigten Produkte basierend auf dem jeweiligen ausgewählten Preisbereich
-//  */
-//
-//
-// function setPrices() {
-//   const priceList = products.map((product) => product.price);
-//   const minPrice = Math.min(...priceList);
-//   const maxPrice = Math.max(...priceList);
-//   priceRange.min = minPrice;
-//   priceRange.max = maxPrice;
-//   priceValue.textContent = minPrice + "€";
-//
-//   priceRange.addEventListener("input", (e) => {
-//     priceValue.textContent = e.target.value + "€";
-//     displayItems(products.filter((product) => product.price <= e.target.value));
-//   });
-// }
-// setPrices();
-//
-//
-// /**Die Klasse "btn action" wird auf jeden Button zugewiesen
+//  * Die Klasse "btn action" wird auf jeden Button zugewiesen
 //  * Fügt für jeden Button ein event listener hinzu mit dem event click
 //  * Findet das Parent Element von dem geklickten Buttons
 //  * Das gefundene Produkt Element von der ausgewählten Größe wird auf einer Variable zugewiesen
 //  * Suche nach dem entspechenden Produkt im products array basierend auf dem Produktnamen
 //  * Ruft die Funktion addItemToCart auf
 //  * Ruft die FUnktion ShowCart auf
-//  * * */
-//
-//
+
 function AddToCartListeners() {
   const addToCartButtons = document.querySelectorAll('.btn-action');
   addToCartButtons.forEach((button) => {
@@ -430,10 +319,3 @@ function AddToCartListeners() {
  * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components), header wiederverwendbar machen
  * Nachdem man auf der Men oder Women seite ist sollen sich die Filterisierungen nur auf die jeweiligen Produkte dann beziehen
  */
-
-
-// document.querySelectorAll('.button-links').forEach(link => {
-//   if(link.href === window.location.href) {
-//     link.setAttribute('aria-current', 'page');
-//   }
-// })
