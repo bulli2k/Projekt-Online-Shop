@@ -88,9 +88,7 @@ export const products = [
     quantity: 1,
     season: "Summer",
     gender: 'Men'
-  }]
-
-export const productsW = [
+  },
   {
     id: 9,
     name: 'Dress',
@@ -122,3 +120,4 @@ export const productsW = [
     season: "Winter",
   },
 ]
+

@@ -120,6 +120,7 @@ select:focus {
 <div class="header-links">
   <nav class="links">
     <button class="button-links" id="homepage"><a href="index.html">Homepage</a></button>
+    <button class="button-links" id="filter-products"><a href="products.html">Products</a></button>
     <button class="button-links" id="filter-men"><a href="Men.html">Men</a></button>
     <button class="button-links" id="filter-women"><a href="women.html">Women</a></button>
 
