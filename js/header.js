@@ -112,11 +112,20 @@ select:focus {
   background-color: #007BFF;
   color: #ffffff;
 }
+#brand-logo {
+position:absolute;
+width: 200px;
+top: 0;
+right: 500px;
+}
 
 </style>
 
 <header>
+<div>
   <p class="product-title"> Product List</p>
+ <img src="/img/brand.png" alt="models" id="brand-logo">
+ </div>
 <div class="header-links">
   <nav class="links">
     <button class="button-links" id="homepage"><a href="index.html">Homepage</a></button>
