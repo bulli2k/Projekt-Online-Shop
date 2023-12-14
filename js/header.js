@@ -116,7 +116,7 @@ select:focus {
 position:absolute;
 width: 200px;
 top: 0;
-right: 500px;
+right: 0;
 }
 
 </style>
