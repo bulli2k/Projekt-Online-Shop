@@ -11,9 +11,6 @@ const cartBody = document.getElementById('cart-body');
 //HTML id "cart-bottom" wird der Variable cartBottom zugewiesen
 const cartBottom = document.getElementById('cart-bottom');
 
-const filterMen = document.getElementById('filter-men');
-const filterWomen = document.getElementById('filter-women');
-
 //Funktion showCart wird aufgerufen
 showCart();
 
@@ -291,31 +288,12 @@ function AddToCartListeners() {
   });
 }
 
-//
-//
-// filterMen.addEventListener('click', () => {
-//   filterMen.setAttribute('aria-current', 'page');
-//   filterWomen.removeAttribute('aria-current');
-//   const filteredMenProducts = products.filter(product => product.gender === 'Men');
-//
-//
-//   displayItems(filteredMenProducts);
-// });
-//
-// filterWomen.addEventListener('click', () => {
-//   filterWomen.setAttribute('aria-current', 'page');
-//   filterMen.removeAttribute('aria-current')
-//   const filteredWomenProducts = products.filter(product => product.gender === 'Women');
-//
-//
-//   displayItems(filteredWomenProducts);
-// });
-
-
 
 /**s
  * ToDo:
- * auch products seite kenntlich machen        x
- * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components), header wiederverwendbar machen
  * Nachdem man auf der Men oder Women seite ist sollen sich die Filterisierungen nur auf die jeweiligen Produkte dann beziehen
+ *
+ *
+ * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components), header wiederverwendbar machen    x
+ * Kenntlich machung auf welcher seite man ist x
  */

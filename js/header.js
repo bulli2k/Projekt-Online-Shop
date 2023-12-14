@@ -260,6 +260,13 @@ export class Header extends HTMLElement {
         }
         setPrices();
 
+        this.shadowRoot.querySelectorAll('.button-links').forEach(link => {
+            if (link.querySelector('a').href === window.location.href) {
+                link.setAttribute('aria-current', 'page');
+            }
+        });
+
+
     }
     connectedCallback() {
     }
