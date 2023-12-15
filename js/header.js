@@ -1,7 +1,5 @@
-
 import {displayItems} from "./main.js";
 import {products} from "./products.js";
-
 
 
 export const headerTemplate = document.createElement('template');
@@ -173,7 +171,7 @@ export class Header extends HTMLElement {
         // werden
         super();
 
-        const shadowRoot = this.attachShadow({ mode: 'open' });
+        const shadowRoot = this.attachShadow({mode: 'open'});
         shadowRoot.appendChild(headerTemplate.content.cloneNode(true));
 
         //HTML id "search-bar" wird der Variable searchBar zugewiesen
@@ -198,37 +196,38 @@ export class Header extends HTMLElement {
                 return product.name.toLowerCase().includes(searchString);
             });
 
-            displayItems(filteredItems); {
+            displayItems(filteredItems);
+            {
             }
 
         });
 
         // - ein EventListener mit dem event "change" wird dem selectedCategorie zugewiesen
- // - vom Event das Ziel die Value wird auf einer Variable zugewiesen
- // - eine leere Variable wird erstellt
- // - if statement das überprüft ob "All Categories" ausgewählt wurde
- // - Wenn, dann werden alle Produkte angezeigt
- // - Falls eine andere Auswahl vorliegt, dann wird
- // - Im Array wird gefiltert nach dem Item mit der property season die, die Value vom Event hat
- // - Der Funktion wird vom Objekt die Property season mit den richtigen Items wiedergegeben
- // - dann werden die Produkte mit der season die ausgewählt wurde angezeigt
- // - Function displayItems wird aufgerufen
+        // - vom Event das Ziel die Value wird auf einer Variable zugewiesen
+        // - eine leere Variable wird erstellt
+        // - if statement das überprüft ob "All Categories" ausgewählt wurde
+        // - Wenn, dann werden alle Produkte angezeigt
+        // - Falls eine andere Auswahl vorliegt, dann wird
+        // - Im Array wird gefiltert nach dem Item mit der property season die, die Value vom Event hat
+        // - Der Funktion wird vom Objekt die Property season mit den richtigen Items wiedergegeben
+        // - dann werden die Produkte mit der season die ausgewählt wurde angezeigt
+        // - Function displayItems wird aufgerufen
 
 
         selectedCategorie.addEventListener('change', (e) => {
-        const selected = e.target.value;
-        let selectedItem;
+            const selected = e.target.value;
+            let selectedItem;
 
-        if (selected === 'All Categories') {
+            if (selected === 'All Categories') {
 
-        selectedItem = products;
-        } else {
+                selectedItem = products;
+            } else {
 
-        selectedItem = products.filter(product => {
-        return product.season.includes(selected)
-        });
-        }
-        displayItems(selectedItem);
+                selectedItem = products.filter(product => {
+                    return product.season.includes(selected)
+                });
+            }
+            displayItems(selectedItem);
         });
 
 
@@ -242,17 +241,17 @@ export class Header extends HTMLElement {
 // - Function displayItems wird aufgerufen
 
         ascendingDescending.addEventListener('change', (e) => {
-        const selected = e.target.value;
-        let selectedItem;
+            const selected = e.target.value;
+            let selectedItem;
 
-        if (selected === 'Ascending') {
-         selectedItem = products.sort((a, b) => a.price - b.price);
-        } else {
-            selectedItem = products.sort((a, b) => b.price - a.price);
-        }
-        displayItems(selectedItem);
+            if (selected === 'Ascending') {
+                selectedItem = products.sort((a, b) => a.price - b.price);
+            } else {
+                selectedItem = products.sort((a, b) => b.price - a.price);
+            }
+            displayItems(selectedItem);
 
-});
+        });
 
 //  * Erstellung der Preisliste aus den Produktdaten
 //  * Bestimmung des minimalen und maximalen Preises in der Preisliste:
@@ -274,6 +273,7 @@ export class Header extends HTMLElement {
                 displayItems(products.filter((product) => product.price <= e.target.value));
             });
         }
+
         setPrices();
 
         this.shadowRoot.querySelectorAll('.button-links').forEach(link => {
@@ -283,9 +283,13 @@ export class Header extends HTMLElement {
         });
 
     }
+
     connectedCallback() {
     }
 }
+
+//  Diese ermöglicht die Verwendung von "<header-component></header-component>" in den HTML Seiten
+// Dies sorgt dafür das die Anwendung im der Header-Klasse verwendet wird und der platzierte Inhalt des Shadow DOMS
 
 customElements.define('header-component', Header);
 
