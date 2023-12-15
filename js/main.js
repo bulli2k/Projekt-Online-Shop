@@ -18,8 +18,11 @@ showCart();
 //Funktion showProducts wird aufgerufen
 showProducts();
 
-/**
+/** Funktion um die Produkte zu initialisieren
+ * Funktion getGenderFromFileName() wird der Variable genderToShow zugewiesen
+ * Das Ergebnis des Ausdrucks wird der Variable isAllProductsPage zugewiesen
  * 1. Es wird durch das Array itiriert.
+ *        - if bedingung die überprüft ob isAllProductsPage oder item.gender den selben Wert haben wie genderToShow
  *    - Es wird die Funktion createProductElement auf die Variable product zugewiesen
  *    - ein EventListener mit dem event "click" wird dem product zugewiesen
  *        - if bedingung die überprüft ob der "click" auf dem BUTTON war
@@ -50,9 +53,17 @@ function showProducts() {
 }
 
 
-// Funktion, um das Geschlecht aus dem Dateinamen zu extrahieren
+/** Funktion, um das Geschlecht aus dem Dateinamen zu extrahieren
+ *  Extraktion des Datennamens der Aktuellen Seite wird der Variable currentFileName zugewiesen
+ *  if bedingung die überprüft ob die Aktuelleseite men.html ist und wenn sie es ist gibt er der Funktion 'Men' wieder
+ *  if bedingung die überprüft ob die Aktuelleseite women.html ist und wenn sie es ist gibt er der Funktion 'Women' wieder
+ *  if bedingung die überprüft ob die Aktuelleseite products.html ist und wenn sie es ist gibt er der Funktion 'All' wieder
+ *  Wenn nix passt wird als Standard 'All' zurückgegeben
+ */
+
+
 function getGenderFromFileName() {
-  const currentFileName = window.location.pathname.split('/').pop(); // Extrahiere den Dateinamen der aktuellen Seite
+  const currentFileName = window.location.pathname.split('/').pop();
 
   if (currentFileName === 'Men.html') {
     return 'Men';
@@ -62,8 +73,7 @@ function getGenderFromFileName() {
     return 'All';
   }
 
-  // Standard-Rückgabewert, falls der Dateiname nicht erkannt wird
-  return 'Men'; // Default to 'Men' if the filename is not recognized
+  return 'All';
 }
 
 
