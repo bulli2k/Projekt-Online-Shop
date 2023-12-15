@@ -165,8 +165,12 @@ right: 0;
 `
 
 export class Header extends HTMLElement {
+    //constructor Methode ist dafür verantwortlich, den shadow DOM zu erstellen und das HTML-Template (headerTemplate)
+    // in den Shadow DOM zu klonen
     constructor() {
-        // Always call super first in the constructor
+
+        // Sorgt dafür das constructor notwendige initialisierungen der übergeordneten Klasse ordnungsgemäß durchgeführt
+        // werden
         super();
 
         const shadowRoot = this.attachShadow({ mode: 'open' });
