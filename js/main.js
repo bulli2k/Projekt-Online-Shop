@@ -29,20 +29,43 @@ showProducts();
  *        - product wird als childElement dem productsContainer zugewiesen um die Produkte anzeigen zu lassen
  */
 function showProducts() {
+  const genderToShow = getGenderFromFileName();
+  const isAllProductsPage = genderToShow === 'All';
 
   products.forEach((item) => {
-    const product = createProductElement(item);
+    if (isAllProductsPage || item.gender === genderToShow) {
+      const product = createProductElement(item);
 
-    product.addEventListener("click", function (event) {
-      if (event.target.tagName === 'BUTTON') {
-        const selectedSize = product.querySelector('.size-options').value;
-        addItemToCart(item, selectedSize);
-      }
-    })
-    productsContainer.appendChild(product);
+      product.addEventListener("click", function (event) {
+        if (event.target.tagName === 'BUTTON') {
+          const selectedSize = product.querySelector('.size-options').value;
+          addItemToCart(item, selectedSize);
+        }
+      });
 
-  })
+      productsContainer.appendChild(product);
+    }
+  });
 }
+
+
+// Funktion, um das Geschlecht aus dem Dateinamen zu extrahieren
+function getGenderFromFileName() {
+  const currentFileName = window.location.pathname.split('/').pop(); // Extrahiere den Dateinamen der aktuellen Seite
+
+  if (currentFileName === 'Men.html') {
+    return 'Men';
+  } else if (currentFileName === 'women.html') {
+    return 'Women';
+  } else if (currentFileName === 'products.html') {
+    return 'All';
+  }
+
+  // Standard-Rückgabewert, falls der Dateiname nicht erkannt wird
+  return 'Men'; // Default to 'Men' if the filename is not recognized
+}
+
+
 
 /**
  *

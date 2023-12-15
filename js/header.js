@@ -1,6 +1,8 @@
 import {products} from "./products.js";
 import {displayItems} from "./main.js";
 
+
+
 export const headerTemplate = document.createElement('template');
 headerTemplate.innerHTML = `
 <style>
@@ -275,7 +277,6 @@ export class Header extends HTMLElement {
                 link.setAttribute('aria-current', 'page');
             }
         });
-
 
     }
     connectedCallback() {
