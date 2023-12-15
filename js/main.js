@@ -1,5 +1,6 @@
 // Array von der Datei "products.js" importiert
 import {products} from "./products.js";
+// Funktionen und der Key von der Datei "components.js" importiert
 import {createProductElement, deleteItemFromCart, storageKey} from "./components.js";
 
 //HTML id "product-container" wird der Variable "productsContainer" zugewiesen
@@ -314,9 +315,7 @@ function AddToCartListeners() {
 
 /**s
  * ToDo:
- * Nachdem man auf der Men oder Women seite ist sollen sich die Filterisierungen nur auf die jeweiligen Produkte dann beziehen
- *
- *
+ * Nachdem man auf der Men oder Women seite ist sollen sich die Filterisierungen nur auf die jeweiligen Produkte dann beziehen      x
  * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components), header wiederverwendbar machen    x
  * Kenntlich machung auf welcher seite man ist x
  */

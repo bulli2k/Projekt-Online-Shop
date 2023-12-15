@@ -1,5 +1,6 @@
-import {products} from "./products.js";
+
 import {displayItems} from "./main.js";
+import {products} from "./products.js";
 
 
 
@@ -194,7 +195,6 @@ export class Header extends HTMLElement {
             });
 
             displayItems(filteredItems); {
-                displayItems(filteredItems, this.shadowRoot);
             }
 
         });
