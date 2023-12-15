@@ -70,7 +70,6 @@ body {
   flex-direction: column;
   width: 400px;
   border-radius: 10px;
-  overflow-y: scroll;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-x: hidden;
 }
@@ -140,6 +139,7 @@ body {
 #cart-body {
   margin-top: 20px;
   height: max-content;
+  overflow-y: scroll;
 
   .cart-item {
     display: flex;
