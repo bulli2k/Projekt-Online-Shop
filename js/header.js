@@ -125,7 +125,9 @@ right: 0;
 <header>
 <div>
   <p class="product-title"> Product List</p>
- <img src="/img/brand.png" alt="models" id="brand-logo">
+  <a href="index.html">
+<img src="/img/brand.png" alt="models" id="brand-logo">
+ </a>
  </div>
 <div class="header-links">
   <nav class="links">
