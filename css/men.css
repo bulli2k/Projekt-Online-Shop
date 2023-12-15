@@ -27,6 +27,7 @@ body {
     border-radius: 20px;
     text-align: center;
     margin: 5px;
+    height: 300px;
 
     & img {
       height: 200px;
