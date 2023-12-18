@@ -193,8 +193,10 @@ export class Header extends HTMLElement {
 // - Function displayItems wird aufgerufen
         searchBar.addEventListener('keyup', (e) => {
             const searchString = e.target.value.toLowerCase();
+            const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
             const filteredItems = products.filter(product => {
-                return product.name.toLowerCase().includes(searchString);
+                return product.name.toLowerCase().includes(searchString) && product.gender === genderFilter;
+
             });
 
             displayItems(filteredItems);
@@ -223,9 +225,10 @@ export class Header extends HTMLElement {
 
                 selectedItem = products;
             } else {
+                const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
 
                 selectedItem = products.filter(product => {
-                    return product.season.includes(selected)
+                    return product.season.includes(selected) && product.gender === genderFilter;
                 });
             }
             displayItems(selectedItem);
@@ -244,11 +247,16 @@ export class Header extends HTMLElement {
         ascendingDescending.addEventListener('change', (e) => {
             const selected = e.target.value;
             let selectedItem;
+            const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
 
             if (selected === 'Ascending') {
-                selectedItem = products.sort((a, b) => a.price - b.price);
+                selectedItem = products
+                    .filter(product => product.gender === genderFilter)
+                    .sort((a, b) => a.price - b.price);
             } else {
-                selectedItem = products.sort((a, b) => b.price - a.price);
+                selectedItem = products
+                    .filter(product => product.gender === genderFilter)
+                    .sort((a, b) => b.price - a.price);
             }
             displayItems(selectedItem);
 
@@ -262,7 +270,10 @@ export class Header extends HTMLElement {
 //  * Aktualisierung des Textinhalts von "priceValue" mit dem jeweiligen ausgewählten Preis und "€"
 //  * Aktualisierung der angezeigten Produkte basierend auf dem jeweiligen ausgewählten Preisbereich
         function setPrices() {
-            const priceList = products.map((product) => product.price);
+            const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
+            const priceList = products
+                .filter(product => product.gender === genderFilter)
+                .map(product => product.price);
             const minPrice = Math.min(...priceList);
             const maxPrice = Math.max(...priceList);
             priceRange.min = minPrice;
@@ -270,8 +281,10 @@ export class Header extends HTMLElement {
             priceValue.textContent = minPrice + "€";
 
             priceRange.addEventListener("input", (e) => {
+                const filteredProducts = products
+                    .filter(product => product.gender === genderFilter && product.price <= e.target.value);
                 priceValue.textContent = e.target.value + "€";
-                displayItems(products.filter((product) => product.price <= e.target.value));
+                displayItems(filteredProducts);
             });
         }
 
