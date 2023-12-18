@@ -293,8 +293,9 @@ export class Header extends HTMLElement {
             const priceList = products
                 .filter(product => product.gender === genderFilter)
                 .map(product => product.price);
-            const minPrice = Math.min(...priceList);
-            const maxPrice = Math.max(...priceList);
+            const minPrice = Math.min(...products.map(product => product.price));
+            const maxPrice = Math.max(...products.map(product => product.price));
+
             priceRange.min = minPrice;
             priceRange.max = maxPrice;
             priceValue.textContent = minPrice + "€";
