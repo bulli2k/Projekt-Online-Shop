@@ -191,18 +191,25 @@ export class Header extends HTMLElement {
 // - vom Event das Ziel die Value wird auf einer Variable zugewiesen
 // - Im Array wird gefiltert nach dem Item mit der property Namen die, die Value vom Event hat
 // - Function displayItems wird aufgerufen
+
         searchBar.addEventListener('keyup', (e) => {
             const searchString = e.target.value.toLowerCase();
             const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
-            const filteredItems = products.filter(product => {
-                return product.name.toLowerCase().includes(searchString) && product.gender === genderFilter;
 
-            });
+            if (window.location.pathname.includes('products.html')) {
+                const filteredItems = products.filter(product => {
+                    return product.name.toLowerCase().includes(searchString);
 
-            displayItems(filteredItems);
-            {
+                });
+                displayItems(filteredItems);
+            } else {
+                const filteredItems = products.filter(product => {
+                    return product.name.toLowerCase().includes(searchString) && product.gender === genderFilter;
+
+                });
+
+                displayItems(filteredItems);
             }
-
         });
 
         // - ein EventListener mit dem event "change" wird dem selectedCategorie zugewiesen
@@ -220,10 +227,11 @@ export class Header extends HTMLElement {
         selectedCategorie.addEventListener('change', (e) => {
             const selected = e.target.value;
             let selectedItem;
+            if (window.location.pathname.includes('products.html')) {
 
-            if (selected === 'All Categories') {
-
-                selectedItem = products;
+                selectedItem = products.filter(product => {
+                    return product.season.includes(selected);
+                });
             } else {
                 const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
 
@@ -246,17 +254,28 @@ export class Header extends HTMLElement {
 
         ascendingDescending.addEventListener('change', (e) => {
             const selected = e.target.value;
-            let selectedItem;
             const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
+            let selectedItem;
 
-            if (selected === 'Ascending') {
-                selectedItem = products
-                    .filter(product => product.gender === genderFilter)
-                    .sort((a, b) => a.price - b.price);
-            } else {
-                selectedItem = products
-                    .filter(product => product.gender === genderFilter)
-                    .sort((a, b) => b.price - a.price);
+            if (window.location.pathname.includes('products.html')) {
+                if (selected === 'Ascending') {
+                    selectedItem = products.sort((a, b) => a.price - b.price);
+                } else {
+                    selectedItem = products.sort((a, b) => b.price - a.price);
+                }
+
+                } else {
+
+                if (selected === 'Ascending') {
+                    selectedItem = products
+                        .filter(product => product.gender === genderFilter)
+                        .sort((a, b) => a.price - b.price);
+                } else {
+                    selectedItem = products
+                        .filter(product => product.gender === genderFilter)
+                        .sort((a, b) => b.price - a.price);
+                }
+
             }
             displayItems(selectedItem);
 
@@ -280,12 +299,22 @@ export class Header extends HTMLElement {
             priceRange.max = maxPrice;
             priceValue.textContent = minPrice + "€";
 
-            priceRange.addEventListener("input", (e) => {
-                const filteredProducts = products
-                    .filter(product => product.gender === genderFilter && product.price <= e.target.value);
-                priceValue.textContent = e.target.value + "€";
-                displayItems(filteredProducts);
-            });
+            if (window.location.pathname.includes('products.html')) {
+                priceRange.addEventListener("input", (e) => {
+                    const filteredProducts = products.filter(product => product.price <= e.target.value);
+                    priceValue.textContent = e.target.value + "€";
+                    displayItems(filteredProducts);
+                });
+
+            } else {
+
+                priceRange.addEventListener("input", (e) => {
+                    const filteredProducts = products
+                        .filter(product => product.gender === genderFilter && product.price <= e.target.value);
+                    priceValue.textContent = e.target.value + "€";
+                    displayItems(filteredProducts);
+                });
+            }
         }
 
         setPrices();
