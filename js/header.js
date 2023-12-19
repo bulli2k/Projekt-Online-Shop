@@ -116,7 +116,9 @@ margin-top: 0;
 
 .button-links[aria-current="page"] {
   background-color: #ffe600;
+  a {
   color: #212121;
+  }
 }
 #brand-logo {
 position:absolute;
