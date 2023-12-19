@@ -250,18 +250,30 @@ export class Header extends HTMLElement {
         selectedCategorie.addEventListener('change', (e) => {
             const selected = e.target.value;
             let selectedItem;
-            if (window.location.pathname.includes('products.html')) {
 
-                selectedItem = products.filter(product => {
-                    return product.season.includes(selected);
-                });
+            if (selected === 'All Categories') {
+                // If "All Categories" is selected and on the "products.html" page, load all products
+                if (window.location.pathname.includes('products.html')) {
+                    selectedItem = products;
+                } else {
+                    // If on a different page, filter based on the current gender
+                    const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
+                    selectedItem = products.filter(product => product.gender === genderFilter);
+                }
             } else {
-                const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
+                if (window.location.pathname.includes('products.html')) {
+                    selectedItem = products.filter(product => {
+                        return product.season.includes(selected);
+                    });
+                } else {
+                    const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
 
-                selectedItem = products.filter(product => {
-                    return product.season.includes(selected) && product.gender === genderFilter;
-                });
+                    selectedItem = products.filter(product => {
+                        return product.season.includes(selected) && product.gender === genderFilter;
+                    });
+                }
             }
+
             displayItems(selectedItem);
         });
 
