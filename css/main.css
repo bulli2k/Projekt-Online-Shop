@@ -66,7 +66,8 @@ img {
 width: 300px;
 }
 #brand-logo {
-    width: 250px;
-    height: 200px;
-
+    position:absolute;
+    width: 200px;
+    top: -40px;
+    right: 0;
 }

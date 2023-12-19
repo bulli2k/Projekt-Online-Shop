@@ -121,7 +121,7 @@ margin-top: 0;
 #brand-logo {
 position:absolute;
 width: 200px;
-top: 0;
+top: -15px;
 right: 0;
 }
 input[type="range"] {
@@ -146,12 +146,10 @@ input[type="range"]::-webkit-slider-thumb {
 </style>
 
 <header>
-<div>
   <p class="product-title"> Product List</p>
   <a href="index.html">
 <img src="/img/brand.png" alt="models" id="brand-logo">
  </a>
- </div>
 <div class="header-links">
   <nav class="links">
     <button class="button-links" id="filter-products"><a href="products.html">Products</a></button>
