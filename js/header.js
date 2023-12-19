@@ -14,7 +14,8 @@ headerTemplate.innerHTML = `
   flex-direction: column;
 }
 header {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 2px dotted #ffe600;
+   background-color: #212121;
 }
 
 header .icon-cart {
@@ -22,9 +23,10 @@ header .icon-cart {
 }
 select {
   border-radius: 10px;
-  background-color: #eeeee6;
+  background-color: #212121;
   border: none;
   font-size: large;
+  color: #fff;
 }
 
 select:focus {
@@ -36,9 +38,10 @@ select:focus {
   align-items: baseline;
   height: fit-content;
   width: fit-content;
-  border: 1px solid #ccc;
+  border: 2px dotted #ffe600;
   border-radius: 5px;
   border-bottom: none;
+  
 }
 #search-bar {
   border: none;
@@ -55,32 +58,32 @@ select:focus {
   width: 800px;
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
   border-radius: 50px;
   border-bottom: none;
 
   .button-links {
     font-size: 1.2rem;
-    color: black;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #212121;
+    
   }
   & a:link {
     text-decoration: none;
-    color: black;
+    color: #fff;
   }
   & a:visited {
     text-decoration: none;
-    color: black;
+    color: #fff;
   }
   & a:hover {
     text-decoration: none;
   }
   & a:active {
     text-decoration: none;
-    color: black;
+  color: #fff;
   }
 }
 
@@ -89,29 +92,31 @@ select:focus {
   display: flex;
   align-items: baseline;
   padding: 0 150px;
-
+  color: #fff;
   & p {
     font-size: large;
   }
-
   .price-value {
     font-size: large;
   }
 }
 
 .product-title {
+margin-top: 0;
   width: fit-content;
   font-size: x-large;
   font-weight: 800;
+  color: #fff;
 
 }
 .header-links {
   width: fit-content;
+  margin-bottom: 5px;
 }
 
 .button-links[aria-current="page"] {
-  background-color: #007BFF;
-  color: #ffffff;
+  background-color: #ffe600;
+  color: #212121;
 }
 #brand-logo {
 position:absolute;
@@ -119,7 +124,25 @@ width: 200px;
 top: 0;
 right: 0;
 }
+input[type="range"] {
+  -webkit-appearance: none; 
+  appearance: none;
+  height: 4px; 
+  background-color: #ffe600; 
+  border-radius: 2px; 
+}
 
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+  appearance: none;
+  width: 16px; 
+  height: 16px; 
+  background-color: #ffe600; 
+  border: 2px solid #fff; 
+  border-radius: 50%; 
+  margin-top: -6px; 
+  cursor: pointer; 
+}
 </style>
 
 <header>
