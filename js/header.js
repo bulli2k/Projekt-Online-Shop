@@ -140,7 +140,7 @@ input[type="range"]::-webkit-slider-thumb {
   background-color: #ffe600; 
   border: 2px solid #fff; 
   border-radius: 50%; 
-  margin-top: -6px; 
+  margin-top: -2px; 
   cursor: pointer; 
 }
 </style>
