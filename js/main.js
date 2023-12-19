@@ -271,6 +271,7 @@ function showCart() {
  *
  *
  * @param products
+ * @param shadowRoot
  */
 
 
