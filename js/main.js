@@ -28,8 +28,6 @@ showProducts();
  *        - if bedingung die überprüft ob der "click" auf dem BUTTON war
  *        - Vom Product wird auf das Size-Options das erste Element die ausgewählte value zugegriffen
  *        - Wenn "click" auf BUTTON war dann wird die function "addItemToCart" aufgerufen
- *        - Beim Betätigen des Buttons wird die Checkout box von hidden zu visible
- *        - Beim initalisieren des Warenkorbs ist die Checkout box hidden
  *        - product wird als childElement dem productsContainer zugewiesen um die Produkte anzeigen zu lassen
  */
 function showProducts() {
@@ -107,7 +105,6 @@ function addItemToCart(product, selectedSize) {
       image: product.images,
       size: selectedSize,
       quantity: 1,
-      stateVisible: true,
     };
     itemData.push(newCartItem);
   }
