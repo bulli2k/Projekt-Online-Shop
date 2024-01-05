@@ -13,6 +13,7 @@ const cartBody = document.getElementById('cart-body');
 //HTML id "cart-bottom" wird der Variable cartBottom zugewiesen
 const cartBottom = document.getElementById('cart-bottom');
 
+
 //Funktion showCart wird aufgerufen
 showCart();
 
@@ -257,6 +258,20 @@ function showCart() {
 
   // Hier wird eine CSS-Klasse dem cartHeader zugewiesen
   cartHeader.classList.add('cart-header');
+
+  const closeButton = document.createElement("div");
+  closeButton.id = "close-btn";
+  closeButton.innerHTML = "&times;";
+
+  // Adding click event listener to close button
+  closeButton.addEventListener("click", function () {
+    // Your code to handle the close button click event
+    // For example, you might want to close the cart by removing the 'open' class
+    cart.classList.remove('open');
+  });
+
+  // Appending close button to cartHeader
+  cartHeader.appendChild(closeButton);
 }
 
 /**
@@ -368,9 +383,15 @@ export function deleteItemFromCart(id) {
 
 /**s
  * ToDo:
+ *
+ * kombinierte filter
+ * Produkt seite display: grid
+ * media queries
+ * warenkorb sidebar
+ *
+ *
  * Filter und Selects spezifisch auf die Seiten anpassen (Women,Men)      x
  * Nachdem man auf der Men oder Women seite ist sollen sich die Filterisierungen nur auf die jeweiligen Produkte dann beziehen      x
- *
- *  Wiederverwendbarer Code in anderen Dateien tuhen(reusable components), header wiederverwendbar machen    x
+ * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components), header wiederverwendbar machen    x
  * Kenntlich machung auf welcher seite man ist x
  */
