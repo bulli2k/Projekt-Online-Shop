@@ -107,7 +107,7 @@ margin-top: 0;
   font-size: x-large;
   font-weight: 800;
   color: #fff;
-
+  padding: 5px;
 }
 .header-links {
   width: fit-content;
