@@ -250,7 +250,7 @@ function showCart() {
   cartBottom.innerHTML = `
 
    <span id="total-price">${totalPrice}€</span>
-    <button class="check-out" id="check-Out"><a href="checkout.html" target="_blank" >Check Out</a></button>
+    <button class="check-out" id="check-Out">Check Out</></button>
 
  `;
 
