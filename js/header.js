@@ -145,19 +145,9 @@ input[type="range"]::-webkit-slider-thumb {
   margin-top: -2px; 
   cursor: pointer; 
 }
-
-#open_cart_btn {
-  border: none;
-  margin: 0 70px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 </style>
 
 <header>
- 
   <p class="product-title"> Product List</p>
   <a href="index.html">
 <img src="/img/brand.png" alt="models" id="brand-logo">
@@ -171,9 +161,6 @@ input[type="range"]::-webkit-slider-thumb {
     <div class="searchItem">
       <input id="search-bar" placeholder="Search..." type="text">
   </div>
-  <button id="open_cart_btn">
-    <img src="/img/bag.PNG" alt="" style="width: 30px" height="30px">
-  </button>
   </nav>
 </div>
 
@@ -221,15 +208,6 @@ export class Header extends HTMLElement {
         const priceRange = shadowRoot.querySelector("#price-range");
         //HTML Klasse "price-value" wird der Variable priceValue zugewiesen
         const priceValue = shadowRoot.querySelector(".price-value");
-
-        const openBtn = shadowRoot.getElementById('open_cart_btn');
-        const cart = document.getElementById('cart');
-
-        openBtn.addEventListener('click', openCart);
-
-        function openCart() {
-          cart.classList.add('open');
-        }
 
 
         // - ein EventListener mit dem event "keyup" wird dem searchBar zugewiesen
