@@ -2,6 +2,7 @@ body {
   font-family: Bahnschrift, sans-serif;
   margin: 0;
   background-color: #eeeee6;
+  overflow-x: hidden;
 }
 
 
@@ -72,6 +73,8 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-x: hidden;
+  transform: translateX(110%);
+  transition: transform 0.5s ease-in-out;
 }
 
 .cart-header {
@@ -217,4 +220,9 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+
+#cart.open {
+  transform: translateX(0);
 }
