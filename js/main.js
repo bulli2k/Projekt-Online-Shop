@@ -323,10 +323,7 @@ function AddToCartListeners() {
 
 /**s
  * ToDo:
- * Filter und Selects spezifisch auf die Seiten anpassen (Women,Men)
- *
- *
- *
+ * Filter und Selects spezifisch auf die Seiten anpassen (Women,Men)      x
  * Nachdem man auf der Men oder Women seite ist sollen sich die Filterisierungen nur auf die jeweiligen Produkte dann beziehen      x
  * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components), header wiederverwendbar machen    x
  * Kenntlich machung auf welcher seite man ist x
