@@ -17,8 +17,8 @@ body {
 }
 
 #product-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(6, 240px);
   padding: 5px;
 
   .product {
@@ -67,8 +67,6 @@ body {
 #cart {
   height: 700px;
   background-color: #f5f5f5;
-  display: flex;
-  flex-direction: column;
   width: 400px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -79,11 +77,13 @@ body {
 
 .cart-header {
   font-size: 1.5rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 180px);
   justify-content: space-between;
   margin: 5px;
   border-bottom: 1px solid #ccc;
   padding: 10px;
+  height: 30px;
 
 
   .cart-title {
@@ -95,7 +95,8 @@ body {
 }
 
 #cart-bottom {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: space-between;
   color: #333;
   margin-top: auto;
@@ -140,7 +141,7 @@ body {
 
 
 #cart-body {
-  margin-top: 20px;
+  display: grid;
   height: max-content;
   overflow-y: scroll;
 
@@ -194,7 +195,9 @@ body {
 
 
 main {
-  display: flex;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 60px;
   justify-content: space-between;
   width: 100vw;
   margin-top: 10px;

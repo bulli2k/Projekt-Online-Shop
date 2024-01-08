@@ -34,11 +34,12 @@ select:focus {
   border: none;
 }
 #caterogize {
-  display: flex;
+height: 50px;
+width: 43%;
+grid-template-columns: repeat(3, 200px);
+  display: grid;
   flex-direction: row;
   align-items: baseline;
-  height: fit-content;
-  width: fit-content;
   border: 2px dotted #ffe600;
   border-radius: 5px;
   border-bottom: none;
@@ -57,7 +58,8 @@ select:focus {
 
 .links {
   width: 800px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
   align-items: center;
   border-radius: 50px;
   border-bottom: none;
@@ -90,7 +92,8 @@ select:focus {
 
 
 .price-ranges {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
   align-items: baseline;
   padding: 0 150px;
   color: #fff;
@@ -149,8 +152,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 #open_cart_btn {
   border: none;
-  margin: 0 70px;
-  border-radius: 5px;
+  margin: 0 400px;
   display: flex;
   align-items: center;
   justify-content: center;
