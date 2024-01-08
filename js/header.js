@@ -157,12 +157,12 @@ input[type="range"]::-webkit-slider-thumb {
   align-items: center;
   justify-content: center;
   background: transparent;
+  cursor: pointer;
 }
 
 #open_cart_btn img {
   width: 30px;
 }
-
 
 </style>
 

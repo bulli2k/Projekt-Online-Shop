@@ -91,6 +91,9 @@ body {
 
 
   }
+  #close-btn {
+    cursor: pointer;
+  }
 
 }
 
@@ -146,7 +149,8 @@ body {
   overflow-y: scroll;
 
   .cart-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin-top: 20px;
     align-items: center;
     color: #333;
