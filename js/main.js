@@ -387,7 +387,7 @@ export function deleteItemFromCart(id) {
  * kombinierte filter
  * Produkt seite display: grid
  * media queries
- * warenkorb sidebar
+ * warenkorb sidebar          x
  *
  *
  * Filter und Selects spezifisch auf die Seiten anpassen (Women,Men)      x

@@ -16,6 +16,7 @@ headerTemplate.innerHTML = `
 header {
   border-bottom: 2px dotted #ffe600;
    background-color: #212121;
+ 
 }
 
 header .icon-cart {
@@ -153,7 +154,14 @@ input[type="range"]::-webkit-slider-thumb {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
 }
+
+#open_cart_btn img {
+  width: 30px;
+}
+
+
 </style>
 
 <header>
@@ -172,7 +180,7 @@ input[type="range"]::-webkit-slider-thumb {
       <input id="search-bar" placeholder="Search..." type="text">
   </div>
   <button id="open_cart_btn">
-    <img src="/img/bag.PNG" alt="" style="width: 30px" height="30px">
+    <img src="/img/shopping-cart.png" id="shopping-cart-logo" alt="">
   </button>
   </nav>
 </div>
