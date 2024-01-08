@@ -14,6 +14,7 @@ headerTemplate.innerHTML = `
   flex-direction: column;
 }
 header {
+width: 2000px;
   border-bottom: 2px dotted #ffe600;
    background-color: #212121;
  
@@ -163,6 +164,14 @@ input[type="range"]::-webkit-slider-thumb {
 #open_cart_btn img {
   width: 30px;
 }
+
+@media only screen and (max-width: 600px) {
+  header {
+  height: 500px;
+  }
+  
+}
+
 
 </style>
 

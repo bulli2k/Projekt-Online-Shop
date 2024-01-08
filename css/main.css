@@ -71,3 +71,9 @@ width: 300px;
     top: -40px;
     right: 0;
 }
+
+@media {
+    #brand-logo {
+        width: 30%;
+    }
+}

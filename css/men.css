@@ -20,6 +20,7 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 240px);
   padding: 5px;
+  width: 1450px;
 
   .product {
     background-color: white;
@@ -234,4 +235,41 @@ footer {
 
 #cart.open {
   transform: translateX(0);
+}
+
+@media only screen and (max-width: 600px) {
+
+  main {
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-gap: 60px;
+    width: 100vw;
+  }
+
+  #product-container {
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(3, 400px);
+    .product {
+      height: 80%;
+
+      & img {
+        height: 70%;
+        width: 80%;
+
+      }
+      #cart {
+        display: flex;
+        flex-direction: column;
+        height: 1000px;
+        background-color: #f5f5f5;
+        width: 700px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow-x: hidden;
+        transform: translateX(110%);
+        transition: transform 0.5s ease-in-out;
+      }
+    }
+  }
 }
