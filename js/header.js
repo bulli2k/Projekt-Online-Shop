@@ -173,9 +173,8 @@ width: fit-content;
 }
  
  #brand-logo {
- height: 100px;
- width: 100px;
- top: 0;
+ height: 70px;
+ width: 70px;
  right: 0;
 }
 .links {
