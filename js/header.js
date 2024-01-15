@@ -5,16 +5,7 @@ import {products} from "./products.js";
 export const headerTemplate = document.createElement('template');
 headerTemplate.innerHTML = `
 <style>
-
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 0;
-  flex-direction: column;
-}
 header {
-width: 2000px;
   border-bottom: 2px dotted #ffe600;
    background-color: #212121;
  
@@ -166,21 +157,91 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 @media only screen and (max-width: 600px) {
+
+body {
+width: 480px;
+}
+.header-info {
+width: fit-content;
+}
+
   header {
-  height: 500px;
+  height: 150px;
+  width: 480px;
   }
-  
+  .product-title {
+}
+ 
+ #brand-logo {
+ height: 100px;
+ width: 100px;
+ top: 0;
+ right: 0;
+}
+.links {
+  width: 0;
+  .button-links {
+    font-size: 1.2rem;
+    border: none;
+    padding: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #212121;
+  }
+}
+ #open_cart_btn {
+  display: none;
+}
+.price-ranges {
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  align-items: baseline;
+  padding: 0;
+  color: #fff;
+  & p {
+    font-size: large;
+  }
+  .price-value {
+    font-size: large;
+  }
+}
+
+ #caterogize {
+    height: 50px;
+    width: 100%;
+    grid-template-columns: repeat(3, 150px);
+    display: grid;
+    flex-direction: row;
+    align-items: baseline;
+    border: 2px dotted #ffe600;
+    border-radius: 5px;
+    border-bottom: none;
+    
+    select {
+    display: flex;
+    
+    }
+}
+#search-bar {
+       width: 80px;
+   
+}
+#close-btn {
+    margin: 0 50px;
+    cursor: pointer;
+}
 }
 
 
 </style>
 
 <header>
- 
+ <div class="header-info">
   <p class="product-title"> Product List</p>
   <a href="index.html">
 <img src="/img/brand.png" alt="models" id="brand-logo">
  </a>
+ </div>
 <div class="header-links">
   <nav class="links">
     <button class="button-links" id="filter-products"><a href="products.html">Products</a></button>

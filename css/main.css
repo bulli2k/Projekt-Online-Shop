@@ -72,7 +72,7 @@ width: 300px;
     right: 0;
 }
 
-@media {
+@media only screen and (max-width: 600px) {
     #brand-logo {
         width: 30%;
     }
