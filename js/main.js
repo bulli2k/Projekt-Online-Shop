@@ -386,7 +386,7 @@ export function deleteItemFromCart(id) {
  *
  * kombinierte filter
  * Produkt seite display: grid          x
- * media queries
+ * media queries                  x
  * warenkorb sidebar          x
  *
  *

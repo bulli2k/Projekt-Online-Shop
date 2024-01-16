@@ -185,7 +185,6 @@ width: fit-content;
     padding: 0;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #212121;
   }
 }
  #open_cart_btn {
@@ -307,7 +306,7 @@ export class Header extends HTMLElement {
         openBtn.addEventListener('click', openCart);
 
         function openCart() {
-          cart.classList.add('open');
+            cart.classList.add('open');
         }
 
 
@@ -400,7 +399,7 @@ export class Header extends HTMLElement {
                     selectedItem = products.sort((a, b) => b.price - a.price);
                 }
 
-                } else {
+            } else {
 
                 if (selected === 'Ascending') {
                     selectedItem = products
@@ -432,9 +431,10 @@ export class Header extends HTMLElement {
             const minPrice = Math.min(...products.map(product => product.price));
             const maxPrice = Math.max(...products.map(product => product.price));
 
-            priceRange.min = minPrice;
+            priceRange.min = 0;
             priceRange.max = maxPrice;
-            priceValue.textContent = minPrice + "€";
+            priceRange.value = 0;
+            priceValue.textContent = 0 + "€";
 
             if (window.location.pathname.includes('products.html')) {
                 priceRange.addEventListener("input", (e) => {
@@ -462,7 +462,52 @@ export class Header extends HTMLElement {
             }
         });
 
-    }
+        function applyAllFilters() {
+            const searchString = searchBar.value.toLowerCase();
+            const selectedCategory = selectedCategorie.value;
+            const ascendingDescendingValue = ascendingDescending.value;
+            const priceFilterValue = priceRange.value;
+            const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
+
+            let filteredItems = products.filter(product => {
+                const searchFilter = product.name.toLowerCase().includes(searchString);
+                const categoryFilter = selectedCategory === 'All Categories' || product.season.includes(selectedCategory);
+                const genderFilterCondition = product.gender === genderFilter;
+
+                console.log("searchFilter:", searchFilter);
+                console.log("categoryFilter:", categoryFilter);
+                console.log("genderFilterCondition:", genderFilterCondition);
+
+                return searchFilter && categoryFilter && genderFilterCondition;
+            });
+
+            console.log("Before Sorting:", filteredItems);
+
+            if (ascendingDescendingValue === 'Ascending') {
+                filteredItems = filteredItems.sort((a, b) => a.price - b.price);
+            } else {
+                filteredItems = filteredItems.sort((a, b) => b.price - a.price);
+            }
+
+            console.log("After Sorting:", filteredItems);
+
+            console.log(priceFilterValue)
+            console.log(typeof priceFilterValue)
+
+            if(priceFilterValue !== '0') {
+                filteredItems = filteredItems.filter(product => product.price <= priceFilterValue);
+            }
+
+            console.log("Final Filtered Items:", filteredItems);
+            displayItems(filteredItems);
+        }
+
+// Event listener for the search bar, category selection, ascending/descending, and price range
+        searchBar.addEventListener('keyup', applyAllFilters);
+        selectedCategorie.addEventListener('change', applyAllFilters);
+        ascendingDescending.addEventListener('change', applyAllFilters);
+        priceRange.addEventListener('input', applyAllFilters);
+        }
 
     connectedCallback() {
     }
