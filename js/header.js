@@ -469,37 +469,65 @@ export class Header extends HTMLElement {
             const priceFilterValue = priceRange.value;
             const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
 
-            let filteredItems = products.filter(product => {
-                const searchFilter = product.name.toLowerCase().includes(searchString);
-                const categoryFilter = selectedCategory === 'All Categories' || product.season.includes(selectedCategory);
-                const genderFilterCondition = product.gender === genderFilter;
+            if (window.location.pathname.includes('products.html')) {
+                let filteredItems = products.filter(product => {
+                    const searchFilter = product.name.toLowerCase().includes(searchString);
+                    const categoryFilter = selectedCategory === 'All Categories' || product.season.includes(selectedCategory);
 
-                console.log("searchFilter:", searchFilter);
-                console.log("categoryFilter:", categoryFilter);
-                console.log("genderFilterCondition:", genderFilterCondition);
+                    return searchFilter && categoryFilter;
+                });
 
-                return searchFilter && categoryFilter && genderFilterCondition;
-            });
+                console.log("Before Sorting:", filteredItems);
 
-            console.log("Before Sorting:", filteredItems);
+                if (ascendingDescendingValue === 'Ascending') {
+                    filteredItems = filteredItems.sort((a, b) => a.price - b.price);
+                } else {
+                    filteredItems = filteredItems.sort((a, b) => b.price - a.price);
+                }
 
-            if (ascendingDescendingValue === 'Ascending') {
-                filteredItems = filteredItems.sort((a, b) => a.price - b.price);
+                console.log("After Sorting:", filteredItems);
+
+                console.log(priceFilterValue)
+                console.log(typeof priceFilterValue)
+
+                if (priceFilterValue !== '0') {
+                    filteredItems = filteredItems.filter(product => product.price <= priceFilterValue);
+                }
+
+                console.log("Final Filtered Items:", filteredItems);
+                displayItems(filteredItems);
             } else {
-                filteredItems = filteredItems.sort((a, b) => b.price - a.price);
+                    let filteredItems = products.filter(product => {
+                        const searchFilter = product.name.toLowerCase().includes(searchString);
+                        const categoryFilter = selectedCategory === 'All Categories' || product.season.includes(selectedCategory);
+                        const genderFilterCondition = product.gender === genderFilter;
+
+
+                        return searchFilter && categoryFilter && genderFilterCondition;
+                    });
+
+                    console.log("Before Sorting:", filteredItems);
+
+                    if (ascendingDescendingValue === 'Ascending') {
+                        filteredItems = filteredItems.sort((a, b) => a.price - b.price);
+                    } else {
+                        filteredItems = filteredItems.sort((a, b) => b.price - a.price);
+                    }
+
+                    console.log("After Sorting:", filteredItems);
+
+                    console.log(priceFilterValue)
+                    console.log(typeof priceFilterValue)
+
+                    if (priceFilterValue !== '0') {
+                        filteredItems = filteredItems.filter(product => product.price <= priceFilterValue);
+                    }
+
+                    console.log("Final Filtered Items:", filteredItems);
+                    displayItems(filteredItems);
+
+
             }
-
-            console.log("After Sorting:", filteredItems);
-
-            console.log(priceFilterValue)
-            console.log(typeof priceFilterValue)
-
-            if(priceFilterValue !== '0') {
-                filteredItems = filteredItems.filter(product => product.price <= priceFilterValue);
-            }
-
-            console.log("Final Filtered Items:", filteredItems);
-            displayItems(filteredItems);
         }
 
 // Event listener for the search bar, category selection, ascending/descending, and price range
