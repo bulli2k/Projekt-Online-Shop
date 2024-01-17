@@ -615,6 +615,7 @@ export class Header extends HTMLElement {
     }
 }
 
+
 //  Diese ermöglicht die Verwendung von "<header-component></header-component>" in den HTML Seiten
 // Dies sorgt dafür das die Anwendung im der Header-Klasse verwendet wird und der platzierte Inhalt des Shadow DOMS
 
