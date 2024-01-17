@@ -299,21 +299,35 @@ export class Header extends HTMLElement {
         const priceRange = shadowRoot.querySelector("#price-range");
         //HTML Klasse "price-value" wird der Variable priceValue zugewiesen
         const priceValue = shadowRoot.querySelector(".price-value");
-
+        //HTML id "open_cart_btn" wird der Variable openBtn zugewiesen
         const openBtn = shadowRoot.getElementById('open_cart_btn');
+        //HTML id "cart" wird der Variable cart zugewiesen
         const cart = document.getElementById('cart');
 
+        //eventListener mit dem Event Click wird den button 'openBtn' zugewiesen
         openBtn.addEventListener('click', openCart);
 
+        /**
+         * Funktion die dem Cart beim betätigen des Icons die Klasse 'open' zuweist.
+         */
         function openCart() {
             cart.classList.add('open');
         }
 
 
         // - ein EventListener mit dem event "keyup" wird dem searchBar zugewiesen
-// - vom Event das Ziel die Value wird auf einer Variable zugewiesen
-// - Im Array wird gefiltert nach dem Item mit der property Namen die, die Value vom Event hat
-// - Function displayItems wird aufgerufen
+        // - vom Event das Ziel die Value wird auf einer Variable zugewiesen
+        // - Bestimmung des Geschlechtsfilters anhand der URL
+        // if bedingung die überprüft:
+        //          - Überprüfung ob die aktuelle Seite 'products.html' ist
+        //          - filter durch das "products" Array wird einer Variable zugewiesen
+        //          - Es wird der Funktion das Produkt wiedergegeben wonach im Inputfield gesucht wird
+        // - Function displayItems wird aufgerufen
+        // - else bedingung für die anderen Seiten
+        //          - filter durch das "products" Array wird einer Variable zugewiesen
+        //          -  Es wird der Funktion das Produkt wiedergegeben wonach im Inputfield gesucht wird und das Geschlecht
+        //          - vom Produkt wird der Variable genderFilter gleichgestellt um zu überprüfen ob es "Men" oder "Women" ist
+        // - Function displayItems wird aufgerufen
 
         searchBar.addEventListener('keyup', (e) => {
             const searchString = e.target.value.toLowerCase();
@@ -338,12 +352,28 @@ export class Header extends HTMLElement {
         // - ein EventListener mit dem event "change" wird dem selectedCategorie zugewiesen
         // - vom Event das Ziel die Value wird auf einer Variable zugewiesen
         // - eine leere Variable wird erstellt
+
         // - if statement das überprüft ob "All Categories" ausgewählt wurde
+        // if bedingung die überprüft:
+        //          - Überprüfung ob die aktuelle Seite 'products.html' ist
         // - Wenn, dann werden alle Produkte angezeigt
+        // - Falls es nicht products.html ist
+
+        // - if bedingung die überprüft:
+        //           - Bestimmung des Geschlechtsfilters anhand der URL
+        // - Im Array wird gefiltert nach dem Item mit der property gender die, selbe Value wie genderFilter hat
         // - Falls eine andere Auswahl vorliegt, dann wird
-        // - Im Array wird gefiltert nach dem Item mit der property season die, die Value vom Event hat
-        // - Der Funktion wird vom Objekt die Property season mit den richtigen Items wiedergegeben
-        // - dann werden die Produkte mit der season die ausgewählt wurde angezeigt
+
+        // if bedingung die überprüft:
+        //          - Überprüfung ob die aktuelle Seite 'products.html' ist
+        //          - Durch das products Array wird gefiltert und der Leeren Variable "selectedItem" zugewiesen
+        //          - Im Array wird gefiltert nach dem Item mit der property season  die, die selbe property haben wie die ausgewählte season
+        //
+        // - Falls es nicht products.html ist
+        // - Von der Seite der Pfadname wird einer Variable zugewiesen
+        // - Durch das products Array wird gefiltert und der Leeren Variable "selectedItem" zugewiesen
+        //          - Im Array wird gefiltert nach dem Item mit der property season  die, die selbe property haben wie die ausgewählte season
+        //          - Und vom Produkt wird der Variable genderFilter gleichgestellt um zu überprüfen ob es "Men" oder "Women" ist
         // - Function displayItems wird aufgerufen
 
 
@@ -352,11 +382,11 @@ export class Header extends HTMLElement {
             let selectedItem;
 
             if (selected === 'All Categories') {
-                // If "All Categories" is selected and on the "products.html" page, load all products
+
                 if (window.location.pathname.includes('products.html')) {
                     selectedItem = products;
                 } else {
-                    // If on a different page, filter based on the current gender
+
                     const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
                     selectedItem = products.filter(product => product.gender === genderFilter);
                 }
@@ -378,14 +408,19 @@ export class Header extends HTMLElement {
         });
 
 
-// - ein EventListener mit dem event "change" wird dem ascendingDescending zugewiesen
-// - vom Event das Ziel die Value wird auf einer Variable zugewiesen
-// - eine leere Variable wird erstellt
-// - if statement das überprüft ob "Min -> Max" ausgewählt wurde
-// - Wenn, dann wird im Array von niedrigsten bis höchsten Preis sortiert
-// - Falls eine andere Auswahl vorliegt, dann wird
-// - Wird im Array vom höchsten bis niedrigsten Preis sortiert
-// - Function displayItems wird aufgerufen
+        // - ein EventListener mit dem event "change" wird dem ascendingDescending zugewiesen
+        // - vom Event das Ziel die Value wird auf einer Variable zugewiesen
+        // - Bestimmung des Geschlechtsfilters anhand der URL
+        // - eine leere Variable wird erstellt
+        // if bedingung die überprüft:
+        //          -Überprüfung ob die aktuelle Seite 'products.html' ist
+        // - if statement das überprüft ob "Min -> Max" ausgewählt wurde
+        // - Wenn, dann wird im Array von niedrigsten bis höchsten Preis sortiert
+        // - Falls eine andere Auswahl vorliegt, dann wird
+        // - Wird im Array vom höchsten bis niedrigsten Preis sortiert
+        // - Falls es nicht products.html ist sondern die Männer oder Frauen seite
+        // - Filter der überprüft ob es Männer oder Frauenprodukt ist
+        // - Function displayItems wird aufgerufen
 
         ascendingDescending.addEventListener('change', (e) => {
             const selected = e.target.value;
@@ -416,19 +451,27 @@ export class Header extends HTMLElement {
 
         });
 
-//  * Erstellung der Preisliste aus den Produktdaten
-//  * Bestimmung des minimalen und maximalen Preises in der Preisliste:
-//  * Setzen der Preisspanne für das HTML-Element "priceRange":
-//  * Initalisierung des Preiswertes "priceValue" mit den minimalsten Preis
-//  * eventListener wird auf priceRange mit dem event input für die Preisfilterung
-//  * Aktualisierung des Textinhalts von "priceValue" mit dem jeweiligen ausgewählten Preis und "€"
-//  * Aktualisierung der angezeigten Produkte basierend auf dem jeweiligen ausgewählten Preisbereich
+        /**
+         * Bestimmung des Geschlechtsfilters anhand der URL
+         * Bestimmung des maximalen Preises in der Preisliste:
+         * Setzen der Preisspanne für das HTML-Element "priceRange":
+         * Minimalster Preiswert ist 0.
+         * if bedingung die überprüft:
+         * Überprüfung ob die aktuelle Seite 'products.html' ist
+         * eventListener wird auf priceRange mit dem event input für die Preisfilterung
+         * Aktualisierung des Textinhalts von "priceValue" mit dem jeweiligen ausgewählten Preis und "€"
+         * Aktualisierung der angezeigten Produkte basierend auf dem jeweiligen ausgewählten Preisbereich
+         * Funktion DisplayItems wird aufgerufen
+         * Falls es nicht products.html ist
+         * Dann findet nur die Erweiterung statt das auch gefiltert wird nach dem Geschlecht.
+         */
+
         function setPrices() {
             const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
-            const priceList = products
-                .filter(product => product.gender === genderFilter)
-                .map(product => product.price);
-            const minPrice = Math.min(...products.map(product => product.price));
+            // const priceList = products
+            //     .filter(product => product.gender === genderFilter)
+            //     .map(product => product.price);
+            // const minPrice = Math.min(...products.map(product => product.price));
             const maxPrice = Math.max(...products.map(product => product.price));
 
             priceRange.min = 0;
@@ -454,13 +497,42 @@ export class Header extends HTMLElement {
             }
         }
 
+        /**
+         * Funktion setPrices wird aufgerufen
+         */
         setPrices();
+
+        //Auf alle Button Links wird eine forEach schleife gelegt
+        //if bedingung die überprüft ob:
+        //          - Der href des Links genau derselbe ist wie der auf der Seite
+        //          - Wenn es der selbe ist wird dem Link ein Attribut-Klasse zugewiesen
 
         this.shadowRoot.querySelectorAll('.button-links').forEach(link => {
             if (link.querySelector('a').href === window.location.href) {
                 link.setAttribute('aria-current', 'page');
             }
         });
+
+
+        /**
+         * Die Value der Searchbar wird einer Variable zugewiesen
+         * Die Ausgewählte Kategorie von dem Select wird einer Variable zugewiesen
+         * Die Ausgewählte reihenfolge (Ascending/Descending) wird einer Variable zugewiesen
+         * Vom Preis schieberegler der Wert wird einer Variable zugewiesen
+         * Bestimmung des Geschlechtsfilters anhand der URL
+         * Überprüfung ob die aktuelle Seite 'products.html' ist
+         * Über das 'products' Array wird gefiltert und der Variable filterItems zugewiesen
+         * Es wird anhand des Ausgewählten Kategorie und Such ergebnis gefiltert
+         * Der Funktion wird einmal das Suchergebnis und die Ausgewählte Kategorie wiedergegeben
+         * if bedingung die überprüft ob die ausgewählte Reihenfolge 'Ascending' ist
+         * Filter der anhand der Ausgewählten Reihenfolge die Produkte aufsteigend  sortiert
+         * Wenn nicht dann:
+         * Filter der anhand der Ausgewählten Reihenfolge die Produkte absteigend sortiert
+         * Filtert die Produkte anhand des Preis Schieberegler
+         * Funktion displayItems wird aufgerufen
+         * Wenn es nicht products.html ist dann:
+         * Werden die Produkte genau so weiter gefiltert nur mit der Suche nach dem Gender der Produkte
+         */
 
         function applyAllFilters() {
             const searchString = searchBar.value.toLowerCase();
@@ -530,7 +602,9 @@ export class Header extends HTMLElement {
             }
         }
 
-// Event listener for the search bar, category selection, ascending/descending, and price range
+
+// Event listener Suchleiste, Kategorienauswahl, Preisreihenfolge auswahl, und der Preis schieberegler werden
+// mit der Funktion applyAllFilters verbunden
         searchBar.addEventListener('keyup', applyAllFilters);
         selectedCategorie.addEventListener('change', applyAllFilters);
         ascendingDescending.addEventListener('change', applyAllFilters);
