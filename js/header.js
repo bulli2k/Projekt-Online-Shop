@@ -468,10 +468,6 @@ export class Header extends HTMLElement {
 
         function setPrices() {
             const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
-            // const priceList = products
-            //     .filter(product => product.gender === genderFilter)
-            //     .map(product => product.price);
-            // const minPrice = Math.min(...products.map(product => product.price));
             const maxPrice = Math.max(...products.map(product => product.price));
 
             priceRange.min = 0;
@@ -538,69 +534,40 @@ export class Header extends HTMLElement {
             const searchString = searchBar.value.toLowerCase();
             const selectedCategory = selectedCategorie.value;
             const ascendingDescendingValue = ascendingDescending.value;
-            const priceFilterValue = priceRange.value;
+            const priceFilterValue = parseFloat(priceRange.value);
             const genderFilter = window.location.pathname.includes('Men') ? 'Men' : 'Women';
 
-            if (window.location.pathname.includes('products.html')) {
-                let filteredItems = products.filter(product => {
-                    const searchFilter = product.name.toLowerCase().includes(searchString);
-                    const categoryFilter = selectedCategory === 'All Categories' || product.season.includes(selectedCategory);
+            const filterItems = product => {
+                const searchFilter = product.name.toLowerCase().includes(searchString);
+                const categoryFilter = selectedCategory === 'All Categories' || product.season.includes(selectedCategory);
 
-                    return searchFilter && categoryFilter;
-                });
+                return window.location.pathname.includes('products.html') ? searchFilter && categoryFilter : searchFilter && categoryFilter && product.gender === genderFilter;
+            };
 
-                console.log("Before Sorting:", filteredItems);
+            let filteredItems = products.filter(filterItems);
 
-                if (ascendingDescendingValue === 'Ascending') {
-                    filteredItems = filteredItems.sort((a, b) => a.price - b.price);
-                } else {
-                    filteredItems = filteredItems.sort((a, b) => b.price - a.price);
-                }
+            console.log("Before Sorting:", filteredItems);
 
-                console.log("After Sorting:", filteredItems);
-
-                console.log(priceFilterValue)
-                console.log(typeof priceFilterValue)
-
-                if (priceFilterValue !== '0') {
-                    filteredItems = filteredItems.filter(product => product.price <= priceFilterValue);
-                }
-
-                console.log("Final Filtered Items:", filteredItems);
-                displayItems(filteredItems);
+            if (ascendingDescendingValue === 'Ascending') {
+                filteredItems = filteredItems.sort((a, b) => a.price - b.price);
             } else {
-                    let filteredItems = products.filter(product => {
-                        const searchFilter = product.name.toLowerCase().includes(searchString);
-                        const categoryFilter = selectedCategory === 'All Categories' || product.season.includes(selectedCategory);
-                        const genderFilterCondition = product.gender === genderFilter;
-
-
-                        return searchFilter && categoryFilter && genderFilterCondition;
-                    });
-
-                    console.log("Before Sorting:", filteredItems);
-
-                    if (ascendingDescendingValue === 'Ascending') {
-                        filteredItems = filteredItems.sort((a, b) => a.price - b.price);
-                    } else {
-                        filteredItems = filteredItems.sort((a, b) => b.price - a.price);
-                    }
-
-                    console.log("After Sorting:", filteredItems);
-
-                    console.log(priceFilterValue)
-                    console.log(typeof priceFilterValue)
-
-                    if (priceFilterValue !== '0') {
-                        filteredItems = filteredItems.filter(product => product.price <= priceFilterValue);
-                    }
-
-                    console.log("Final Filtered Items:", filteredItems);
-                    displayItems(filteredItems);
-
-
+                filteredItems = filteredItems.sort((a, b) => b.price - a.price);
             }
+
+
+            console.log("After Sorting:", filteredItems);
+
+            console.log(priceFilterValue);
+            console.log(typeof priceFilterValue);
+
+            if (priceFilterValue !== 0) {
+                filteredItems = filteredItems.filter(product => product.price <= priceFilterValue);
+            }
+
+            console.log("Final Filtered Items:", filteredItems);
+            displayItems(filteredItems);
         }
+
 
 
 // Event listener Suchleiste, Kategorienauswahl, Preisreihenfolge auswahl, und der Preis schieberegler werden
