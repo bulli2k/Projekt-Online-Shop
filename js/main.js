@@ -199,9 +199,10 @@ function showCart() {
         itemCount.innerText = product.quantity;
         totalQuantity++;
         totalPrice += product.price;
-        document.getElementById('cart-total').innerText = `(${totalQuantity} items)`;
-        document.getElementById('total-price').innerText = `${totalPrice}€`;
-        localStorage.setItem(storageKey, JSON.stringify(itemData));
+
+
+
+        updateInfos(totalQuantity,totalPrice,itemData);
       });
 
       /**
@@ -217,18 +218,16 @@ function showCart() {
        */
 
       cartItem.querySelector("#decrement").addEventListener("click", () => {
-        if (product.quantity <= 0) {
-          deleteItemFromCart(product.id);
-          showCart();
-          return;
-        }
         product.quantity--;
         itemCount.innerText = product.quantity;
         totalQuantity--;
         totalPrice -= product.price;
-        document.getElementById('cart-total').innerText = `(${totalQuantity} items)`;
-        document.getElementById('total-price').innerText = `${totalPrice}€`;
-        localStorage.setItem(storageKey, JSON.stringify(itemData));
+        updateInfos(totalQuantity,totalPrice,itemData);
+
+        if (product.quantity <= 0) {
+          deleteItemFromCart(product.id);
+          showCart();
+        }
       })
     })
   }
@@ -273,6 +272,7 @@ function showCart() {
   // Appending close button to cartHeader
   cartHeader.appendChild(closeButton);
 }
+
 
 /**
  *  Es wird durch das Array itiriert und konvertiert das Product Objekt in den folgenden String
@@ -381,6 +381,14 @@ export function deleteItemFromCart(id) {
   localStorage.setItem(storageKey, JSON.stringify(itemData));
 }
 
+function updateInfos(totalQuantity, totalPrice, itemData) {
+  document.getElementById('cart-total').innerText = `(${totalQuantity} items)`;
+  document.getElementById('total-price').innerText = `${totalPrice}€`;
+  localStorage.setItem(storageKey, JSON.stringify(itemData));
+}
+
+
+
 /**s
  * ToDo:
  *
@@ -394,4 +402,7 @@ export function deleteItemFromCart(id) {
  * Nachdem man auf der Men oder Women seite ist sollen sich die Filterisierungen nur auf die jeweiligen Produkte dann beziehen      x
  * Wiederverwendbarer Code in anderen Dateien tuhen(reusable components), header wiederverwendbar machen    x
  * Kenntlich machung auf welcher seite man ist x
+ *
+ * Übung: null und undefined checks für localstorage
+ *  Refactor des Codes
  */
