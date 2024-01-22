@@ -5,7 +5,6 @@ export const products = [
     price: 30,
     quantity: 1,
     images: 'tshirt.PNG',
-    size: "S",
     season: "Summer",
     gender: 'Men'
   },
@@ -15,7 +14,6 @@ export const products = [
     price: 60,
     quantity: 1,
     images: 'pullover.PNG',
-    size: "XL",
     season: "Winter",
     gender: 'Men'
   },
@@ -24,7 +22,6 @@ export const products = [
     name: 'Jeans',
     price: 90,
     images: "jeans.PNG",
-    size: "L",
     quantity: 1,
     season: "Winter",
     gender: 'Men'
@@ -34,7 +31,6 @@ export const products = [
     name: 'Cars Crocs',
     price: 120,
     images: 'shoes.PNG',
-    size: "45",
     quantity: 1,
     season: "Summer",
     gender: 'Men'
@@ -44,7 +40,6 @@ export const products = [
     name: 'Beanie',
     price: 35,
     images: 'beanie.PNG',
-    size: "XL",
     quantity: 1,
     season: "Winter",
     gender: 'Men'
@@ -54,7 +49,6 @@ export const products = [
     name: 'North Face Jacke',
     price: 360,
     images: 'jacke.PNG',
-    size: "XL",
     quantity: 1,
     season: "Winter",
     gender: 'Men'
@@ -64,7 +58,6 @@ export const products = [
     name: 'Jordan 4er',
     price: 800,
     images: "jordan.PNG",
-    size: "XL",
     quantity: 1,
     season: "Winter",
     gender: 'Men'
@@ -74,7 +67,6 @@ export const products = [
     name: 'Nike Jogginghose',
     price: 70,
     images: 'jogginghose.PNG',
-    size: "XL",
     quantity: 1,
     season: "Summer",
     gender: 'Men'
@@ -84,7 +76,6 @@ export const products = [
     name: 'Kurze Hose',
     price: 40,
     images: 'kurzehose.PNG',
-    size: "XL",
     quantity: 1,
     season: "Summer",
     gender: 'Men'
@@ -95,7 +86,6 @@ export const products = [
     price: 450,
     quantity: 1,
     images: 'dress.PNG',
-    size: 'S',
     gender: 'Women',
     season: "Summer",
   },
@@ -105,7 +95,6 @@ export const products = [
     price: 120,
     quantity: 1,
     images: 'wpants.PNG',
-    size: 'S',
     gender: 'Women',
     season: "Winter",
   },
@@ -115,7 +104,6 @@ export const products = [
     price: 700,
     quantity: 1,
     images: 'prada.PNG',
-    size: 'S',
     gender: 'Women',
     season: "Winter",
   },
